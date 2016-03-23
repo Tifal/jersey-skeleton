@@ -17,10 +17,10 @@ public class UserDBResource {
 
     public UserDBResource() {
 		try {
-			logger.debug("Bonjour tout le monde");
 			dao.dropUserTable();
 			dao.createUserTable();
 			dao.insert(new User(0,"Utilisateur test", "alias du test", "123 rue des bois, Lille 59000"));
+			dao.insert(new User(0,"Utilisateur test2", "alias du test2", "123 rue des bois, Lille 59000"));
 		} catch (Exception e) {
 			System.out.println("Table déjà là !");
 		}
