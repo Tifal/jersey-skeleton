@@ -19,6 +19,7 @@ public class User implements Principal {
     private String password;
     private String passwdHash;
     private String salt;
+    private String address;
 
     private static User anonymous = new User(-1, "Anonymous", "anonym");
 
@@ -31,6 +32,13 @@ public class User implements Principal {
         this.id = id;
         this.name = name;
         this.alias = alias;
+    }
+    
+    public User(int id, String name, String alias, String address) {
+    	this.id = id;
+        this.name = name;
+        this.alias = alias;
+        this.address = address;
     }
 
     public User() {
@@ -69,6 +77,14 @@ public class User implements Principal {
     public String getPassword () {
         return this.password;
     }
+    
+    public String getAddress() {
+		return address;
+	}
+    
+    public void setAddress(String address) {
+		this.address = address;
+	}
 
     private String buildHash(String password, String s) {
         Hasher hasher = Hashing.md5().newHasher();
@@ -94,12 +110,12 @@ public class User implements Principal {
         if (getClass() != arg.getClass())
             return false;
         User user = (User) arg;
-        return name.equals(user.name) && alias.equals(user.alias) && email.equals(user.email) && passwdHash.equals(user.getPasswdHash()) && salt.equals((user.getSalt()));
+        return name.equals(user.name) && alias.equals(user.alias) && email.equals(user.email) && address.equals(user.address) && passwdHash.equals(user.getPasswdHash()) && salt.equals((user.getSalt()));
     }
 
     @Override
     public String toString() {
-        return id + ": " + alias + ", " + name + " <" + email + ">";
+        return id + ": " + alias + ", " + name + " <" + email + "> , " + address;
     }
 
     public String getAlias() {
