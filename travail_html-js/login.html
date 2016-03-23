@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <title>Jersey Skeleton</title>
+    <meta charset='utf-8'>
+    <!-- jQuery -->
+    <script src="//code.jquery.com/jquery-1.11.2.min.js"></script>
+    <script src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+
+    <!-- bootstrap -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap-theme.min.css">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
+
+    <!-- Code local -->
+    <script src="all.js"></script>
+</head>
+<body>
+
+<div class="container">
+
+      <header class="page-header row col-lg-offset-2 col-sm-8">
+
+          <div class="col-sm-6">
+            <H1 ALIGN=CENTER>Take & Wash</H1>
+          </div>
+          <div class="col-sm-6">
+            <a class="btn btn-default btn-lg active" href="index.html" role="button">Accueil</a>
+	    <a class="btn btn-primary btn-lg active" href="login.html" role="button">Connection</a>
+	    <a class="btn btn-default btn-lg active" href="#" role="button">Contact</a>
+          </div>
+
+      </header>
+
+      <div class="row">
+        <section class="col-lg-offset-3 col-sm-6">
+	  <div ALIGN=CENTER id='login'>
+	    <h2>Authentification</h2>
+	      <form class="form-horizontal">
+		  <div class="form-group">
+		    <label for="inputEmail3" class="col-sm-3 control-label">Login</label>
+		    <div class="col-sm-9">
+		      <input type="text" class="form-control" name ='login' placeholder="Login">
+		    </div>
+		  </div>
+		  <div class="form-group">
+		    <label for="inputPassword3" class="col-sm-3 control-label">Mot de Passe</label>
+		    <div class="col-sm-9">
+		      <input type="password" class="form-control" name ='pwd' id="inputPassword3" placeholder="Password">
+		    </div>
+		  </div>
+		  <div class="form-group">
+		    <div class="col-sm-offset-2 col-sm-10">
+		      <button id='newlogin' type="button" name ='submit' class="btn btn-default"><span class="glyphicon glyphicon-ok-sign"></span> Sign in</button>
+		    </div>
+		  </div>
+	      </form>
+
+
+	  </div>
+        </section>
+
+      </div>
+   </div>
+
+	
+
+
+
+    <script type="text/javascript">
+			$(document).ready(function() {
+			
+				$("#newlogin").click(function () {postUser1($("#login [name='login']").val(), $("#login [name='pwd']").val())});
+				
+				// test();
+					
+			});
+
+
+
+    </script>
+</body>
+</html>
