@@ -1,3 +1,97 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <title>Jersey Skeleton</title>
+    <meta charset='utf-8'>
+    <!-- jQuery -->
+    <script src="//code.jquery.com/jquery-1.11.2.min.js"></script>
+    <script src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+
+    <!-- bootstrap -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap-theme.min.css">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
+
+    <!-- Code local -->
+    <script src="all.js"></script>
+</head>
+<body>
+
+
+
+	<H1 ALIGN=CENTER>Take my clothes</H1>
+
+	<div id='status'>
+          <input id='home-button' type='button' name = 'submit' value="Retour à l'accueil">
+      </div>
+    
+    
+     <div id='login'>
+          <h2>Authentification</h2>
+          <form>
+            <input type='text'   name ='login' value='Identifiant'>
+            <input type='text'   name ='pwd'   value='Mot de passe'>
+            <input id='newlogin' type='button' name = 'submit' value='Ok'>
+          </form>
+      </div>
+    
+    
+    <script type="text/javascript">
+			$(document).ready(function() {
+			
+				$("#newlogin").click(function () {postUser1($("#login [name='login']").val(), $("#login [name='pwd']").val())});
+				
+				// test();
+					
+			});
+
+
+
+    </script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 function getUser(name) {
 	getUserGeneric(name, "v1/user/");
 }
@@ -52,6 +146,27 @@ function postUser(name, alias) {
     postUserGeneric(name, alias, "", "v1/user/");
 }
 
+function postUser1(name, pwd){
+
+	//console.log("test");
+	
+	$.getJSON("v1/userdb/", function(data) {
+		
+		
+		// afficheListUsers(data)
+		
+		if(existe(data, name)){
+			alert("Existe deja");
+		}else{
+    		postUserGeneric(name, "", pwd, "v1/userdb/");
+		}
+		
+		
+	});
+	
+	
+}
+
 function postUserBdd(name, alias, pwd) {
     postUserGeneric(name, alias, pwd, "v1/userdb/");
 }
@@ -69,7 +184,7 @@ function postUserGeneric(name, alias, pwd, url) {
 			"id" : 0
 		}),
 		success : function(data, textStatus, jqXHR) {
-			afficheUser(data);
+			afficheUser(data);		
 		},
 		error : function(jqXHR, textStatus, errorThrown) {
 			alert('postUser error: ' + textStatus);
@@ -105,3 +220,27 @@ function afficheListUsers(data) {
 	html = html + "</ul>";
 	$("#reponse").html(html);
 }
+
+function existe(data, name) {
+	var html = '<ul>';
+	var index = 0;
+	for (index = 0; index < data.length; ++index) {
+		html = html + "<li>"+ data[index].name + "</li>";
+		
+		if(name === data[index].name){
+			return true;
+		}
+		
+	}
+	html = html + "</ul>";
+	$("#reponse").html(html);
+	
+	return false;
+}
+
+/*
+function test(){
+	alert("a");
+}
+alert("b");
+*/
