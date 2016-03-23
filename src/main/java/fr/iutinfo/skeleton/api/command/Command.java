@@ -14,16 +14,88 @@ public class Command {
 	private int userid = 0;
 	private String addressRetrait;
 	private String addressLivraison;
-	private Date dateRetrait;
-	private Date dateLivraison;
-	private double price = 40.0;
-	private boolean paid;
-	
+	private String dateRetrait;
+	private String dateLivraison;
+	private String price = "40.0";
+	private int paid = 0;
 
-	public Command(int id, int userid, String addressRetrait, String addressLivraison, Date dateRetrait,
-			Date dateLivraison) {
-		
+	public Command() {
 
+	}
+
+	public Command(int id, int userid, String addressRetrait, String addressLivraison, String dateRetrait,
+			String dateLivraison, String price) {
+		this.id = id;
+		this.userid = userid;
+		this.addressRetrait = addressRetrait;
+		this.addressLivraison = addressLivraison;
+		this.dateRetrait = dateRetrait;
+		this.dateLivraison = dateLivraison;
+		this.price = price;
+	}
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public int getUserid() {
+		return userid;
+	}
+
+	public void setUserid(int userid) {
+		this.userid = userid;
+	}
+
+	public String getAddressRetrait() {
+		return addressRetrait;
+	}
+
+	public void setAddressRetrait(String addressRetrait) {
+		this.addressRetrait = addressRetrait;
+	}
+
+	public String getAddressLivraison() {
+		return addressLivraison;
+	}
+
+	public void setAddressLivraison(String addressLivraison) {
+		this.addressLivraison = addressLivraison;
+	}
+
+	public String getDateRetrait() {
+		return dateRetrait;
+	}
+
+	public void setDateRetrait(String dateRetrait) {
+		this.dateRetrait = dateRetrait;
+	}
+
+	public String getDateLivraison() {
+		return dateLivraison;
+	}
+
+	public void setDateLivraison(String dateLivraison) {
+		this.dateLivraison = dateLivraison;
+	}
+
+	public String getPrice() {
+		return price;
+	}
+
+	public void setPrice(String price) {
+		this.price = price;
+	}
+
+	public int isPaid() {
+		return paid;
+	}
+
+	public void setPaid(int paid) {
+		this.paid = paid;
 	}
 
 }

@@ -5,7 +5,7 @@
 <html lang="fr">
   <head>
     <meta charset="utf-8">
-    <title>Détail de ${it.name}</title>
+    <title>Commande numéro ${it.id}</title>
     <jsp:include page="/layout/head.jsp"/>
   </head>
   <body>
@@ -15,15 +15,17 @@
         <div class="col-md-6 col-md-offset-3">
             <div class="panel panel-default">
               <div class="panel-heading">
-                <h3 class="panel-title">Détail de ${it.name}</h3>
+                <h3 class="panel-title">Détail de la commande numéro ${it.id}</h3>
               </div>
               <div class="panel-body">
-                Nom : ${it.name}<br/>
                 Id : ${it.id}<br/>
-                alias : ${it.alias} <br/>
-                email : ${it.email} <br/>
-                address : ${it.address} <br />
-                mot de passe : ${it.passwdHash} <br/>
+                userid : <a href="../user/${it.userid}">${it.userid}</a><br/>
+                adresse de retrait : ${it.addressRetrait} <br/>
+                date de retrait : ${it.dateRetrait} <br/>
+                adresse de livraison : ${it.addressLivraison} <br />
+                date de livraison : ${it.dateLivraison} <br/>
+                prix de la commande : ${it.price} € <br/>
+ 
               </div>
             </div>
         </div>
