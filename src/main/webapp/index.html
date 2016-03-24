@@ -150,6 +150,44 @@
 				</p>
 			</div>
 		</div>
+		<div class="main" style="display: none;">
+			<nav class="navbar navbar-default">
+				<div class="container-fluid">
+				    <div class="navbar-header">
+				      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+				        <span class="sr-only">Toggle navigation</span>
+				        <span class="icon-bar"></span>
+				        <span class="icon-bar"></span>
+				        <span class="icon-bar"></span>
+				      </button>
+				      <a class="navbar-brand" href="#">Take & Wash</a>
+				    </div>
+				    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+				      <ul class="nav navbar-nav">
+				        <li class="active"><a href="#">Acceuil <span class="sr-only">(current)</span></a></li>
+				        <li><a href="#">Tarifs</a></li>
+				        <li class="dropdown">
+				          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Commandes <span class="caret"></span></a>
+				          <ul class="dropdown-menu">
+				            <li><a href="#">Commander</a></li>
+				            <li><a href="#">Mes commandes</a></li>
+				          </ul>
+				        </li>
+				      </ul>
+				      <ul class="nav navbar-nav navbar-right">
+				        <li><a href="#">Nous contacter</a></li>
+				        <li class="dropdown">
+				          <a href="#" class="dropdown-toggle username-value" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Username <span class="caret"></span></a>
+				          <ul class="dropdown-menu">
+				            <li><a href="#">Paramètres</a></li>
+				            <li><a href="#">Se déconnecter</a></li>
+				          </ul>
+				        </li>
+				      </ul>
+				    </div>
+				</div>
+			</nav>
+		</div>
 	</div>
 	<div class="loading alert alert-info blink" style="display: none;">
 		<strong id="load-message">Loading...</strong>
@@ -194,7 +232,8 @@
 			        	req.setRequestHeader("Authorization", "Basic " + btoa(user + ":" + pwd));
 			        },
 			        success: function (data){
-			        	showError('Connecter!');
+			        	$(".username-value").html(cleanInput(user) + ' <span class="caret">');
+			        	showMenu(".main");
 			        },
 			        error : function(jqXHR, textStatus, errorThrown) {
 			       		showError("Mauvais nom d'utilisateur ou mot de passe!");
@@ -245,7 +284,8 @@
 						"id" : 0
 					}),
 			        success: function (data){
-			        	showError('Inscrit!');
+			        	$(".username-value").html(cleanInput(user) + ' <span class="caret">');
+			        	showMenu(".main");
 			        },
 			        error : function(jqXHR, textStatus, errorThrown) {
 			       		showError("Le nom d'utilisateur est déjà utilisé!");
@@ -315,6 +355,10 @@
 				}, 2000);
 			});
 		};
+		
+		function cleanInput(input) {
+			return $('<div/>').text(input).text();
+		}
     </script>
 </body>
 </html>
