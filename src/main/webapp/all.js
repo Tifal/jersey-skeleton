@@ -77,6 +77,35 @@ function postUserGeneric(name, alias, pwd, url) {
 	});
 }
 
+function postCommandBdd(userid, address, dateRetrait, dateLivraison, prix) {
+    postUserGeneric(userid, address, dateRetrait, dateLivraison, prix, "v1/commanddb/");
+}
+
+function postCommandGeneric(userid, address, dateRetrait, dateLivraison, prix, url) {
+	$.ajax({
+		type : 'POST',
+		contentType : 'application/json',
+		url : url,
+		dataType : "json",
+		data : JSON.stringify({
+			"userid" : userid,
+			"addressRetrait" : address,
+			"dateRetrait" : dateRetrait,
+			"addressLivraison" : address,
+			"dateLivraison" : dateLivraison,
+			"price" : prix,
+			"id" : 0,
+			"paid" : 0
+		}),
+		success : function(data, textStatus, jqXHR) {
+			afficheUser(data);
+		},
+		error : function(jqXHR, textStatus, errorThrown) {
+			alert('postUser error: ' + textStatus);
+		}
+	});
+}
+
 function listUsers() {
     listUsersGeneric("v1/user/");
 }
