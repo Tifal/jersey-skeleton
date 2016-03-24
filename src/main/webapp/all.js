@@ -1,3 +1,7 @@
+var indexCourant=0;
+var loginCourant=undefined;
+var idCourant=0;
+
 function getUser(name) {
 	getUserGeneric(name, "v1/user/");
 }
@@ -52,6 +56,55 @@ function postUser(name, alias) {
     postUserGeneric(name, alias, "", "v1/user/");
 }
 
+function postUser1(name, pwd){
+
+	//console.log("test");
+	
+	$.getJSON("v1/userdb/", function(data) {
+		
+		
+		// afficheListUsers(data)
+		
+		if(existeLog(data, name)){
+			alert("Login existe deja");
+		}else{
+    		postUserGeneric(name, name, pwd, "v1/userdb/");
+		}
+		
+		
+	});
+	
+	
+}
+
+function postUser2(name, pwd){
+
+	// console.log("test pwd : "+pwd);
+	
+	$.getJSON("v1/userdb/", function(data) {
+		
+		
+		// afficheListUsers(data)
+		
+		if(existeLog(data, name) && true /* existePwd(data, pwd)*/ ){
+			alert("Vous êtes connecté");
+			loginCourant=data[indexCourant].name;
+			idCourant=data[indexCourant].id;
+			$("#order").show();
+			$("#login").hide();
+			$("#create-user").hide();
+			// alert(" : "+loginCourant);
+		}else{
+    		alert("Erreur de login ou mot de passe");
+    		indexCourant=undefined;
+		}
+		
+		
+	});
+	
+	
+}
+
 function postUserBdd(name, alias, pwd) {
     postUserGeneric(name, alias, pwd, "v1/userdb/");
 }
@@ -69,39 +122,10 @@ function postUserGeneric(name, alias, pwd, url) {
 			"id" : 0
 		}),
 		success : function(data, textStatus, jqXHR) {
-			afficheUser(data);
+			afficheUser(data);		
 		},
 		error : function(jqXHR, textStatus, errorThrown) {
 			alert('postUser error: ' + textStatus);
-		}
-	});
-}
-
-function postCommandBdd(userid, address, dateRetrait, dateLivraison, prix) {
-    postCommandGeneric(userid, address, dateRetrait, dateLivraison, prix, "v1/commanddb/");
-}
-
-function postCommandGeneric(userid, address, dateRetrait, dateLivraison, prix, url) {
-	$.ajax({
-		type : 'POST',
-		contentType : 'application/json',
-		url : url,
-		dataType : "json",
-		data : JSON.stringify({
-			"userid" : userid,
-			"addressRetrait" : address,
-			"dateRetrait" : dateRetrait,
-			"addressLivraison" : address,
-			"dateLivraison" : dateLivraison,
-			"price" : prix,
-			"id" : 0,
-			"paid" : 0
-		}),
-		success : function(data, textStatus, jqXHR) {
-			console.log(data);
-		},
-		error : function(jqXHR, textStatus, errorThrown) {
-			alert('postCommand error: ' + errorThrown);
 		}
 	});
 }
@@ -134,3 +158,81 @@ function afficheListUsers(data) {
 	html = html + "</ul>";
 	$("#reponse").html(html);
 }
+
+function existeLog(data, name) {
+	var html = '<ul>';
+	var index = 0;
+	for (index = 0; index < data.length; ++index) {
+		html = html + "<li>"+ data[index].name + "</li>";
+		
+		if(name === data[index].name){
+			indexCourant=index;
+			// console.log("indexCourant: "+indexCourant+" index: "+index);
+			return true;
+		}
+		
+	}
+	html = html + "</ul>";
+	$("#reponse").html(html);
+	
+	return false;
+}
+
+function existePwd(data, pwd) {
+	var html = '<ul>';
+	var index = 0;
+	
+	console.log(data[40]);
+	
+	for (index = 0; index < data.length; ++index) {
+		html = html + "<li>"+ data[index].password + "</li>";
+		
+		// .passwdHash
+		
+		console.log(" : "+data[index].password);
+		
+		console.log("test 2 pwd : "+pwd);
+		
+		if(pwd === data[index].password){
+		
+		console.log("va retourner true");
+		
+			return true;
+		}
+		
+	}
+	html = html + "</ul>";
+	$("#reponse").html(html);
+	
+	return false;
+}
+
+function commandDBResource(addressRetrait, 
+		addressLivraison, dateRetrait, dateLivraison, price){
+
+	$.ajax({
+		type : 'POST',
+		contentType : 'application/json',
+		url : "v1/commanddb/",
+		dataType : "json",
+		beforeSend: function(xhr) { xhr.setRequestHeader("Authorization", "Basic " + btoa( $("#login [name='login']").val()+ ":"+$("#login [name='pwd']").val()));},
+		data : JSON.stringify({
+			"id" : 0,
+			"userid" : idCourant,
+			"addressRetrait" : addressRetrait,
+			"addressLivraison" : addressLivraison,
+			"dateRetrait" : dateRetrait,
+			"dateLivraison" : dateLivraison,
+			"price" : price
+		}),
+		success : function(data, textStatus, jqXHR) {
+			alert("ok");
+			console.log(data.id +" - "+ data.userid+" - "+data.addressRetrait+" - "+data.addressLivraison+" - "+data.dateRetrait+" - "+data.dateLivraison+" - "+data.price);
+		},
+		error : function(jqXHR, textStatus, errorThrown) {
+			alert('error: ' + textStatus);
+		}
+	});
+	
+}
+
