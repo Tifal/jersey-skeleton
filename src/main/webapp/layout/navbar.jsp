@@ -7,6 +7,7 @@
               <ul class="dropdown-menu active">
 	            <li><a href="/html/user">Utilisateurs</a></li>
 	            <li><a href="/html/command">Commandes</a></li>
+	            <li><a href="/html/planning">Planning</a></li>
 	          </ul>
 	        </li>
         </ul>

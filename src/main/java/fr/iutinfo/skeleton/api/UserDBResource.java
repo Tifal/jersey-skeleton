@@ -18,6 +18,8 @@ public class UserDBResource {
     public UserDBResource() {
 		try {
 			dao.createUserTable();
+			dao.insert(new User(0, "Maxime Picault", "Le flemmard", "12 rue de la flem"));
+			dao.insert(new User(0, "Jean Jacques", "Rousseau", "12 rue des livres"));
 		} catch (Exception e) {
 			System.out.println("Table déjà là !");
 		}

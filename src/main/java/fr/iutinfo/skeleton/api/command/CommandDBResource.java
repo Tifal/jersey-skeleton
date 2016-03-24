@@ -36,6 +36,8 @@ public class CommandDBResource {
 	
 	@POST
 	public Command createCommand(Command command) {
+		command.setPaid(0);
+		//TODO : calculate command price
 		int id = dao.insert(command);
 		command.setId(id);
 		return command;
