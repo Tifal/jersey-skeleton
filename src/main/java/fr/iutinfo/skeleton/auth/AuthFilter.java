@@ -11,6 +11,7 @@ import javax.ws.rs.container.ContainerRequestContext;
 import javax.ws.rs.container.ContainerRequestFilter;
 import javax.ws.rs.container.PreMatching;
 import javax.ws.rs.core.HttpHeaders;
+import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.Status;
 import javax.ws.rs.ext.Provider;
 
@@ -38,12 +39,12 @@ public class AuthFilter implements ContainerRequestFilter {
             UserDao dao = BDDFactory.getDbi().open(UserDao.class);
             User user = dao.findByName(loginPassword[0]);
             if(user != null && !user.isGoodPassword(loginPassword[1]) || user == null) {
-                throw new WebApplicationException(Status.UNAUTHORIZED);
+            	 throw new WebApplicationException(Response.status(Response.Status.UNAUTHORIZED).header(HttpHeaders.WWW_AUTHENTICATE, "Basic realm=\"Take & Wash\"").entity("Ressource requires login.").build());
             }
 
             containerRequest.setSecurityContext(new AppSecurityContext(user, scheme));
         } else {
-            containerRequest.setSecurityContext(new AppSecurityContext(User.getAnonymousUser(), scheme));
+        	throw new WebApplicationException(Response.status(Response.Status.UNAUTHORIZED).header(HttpHeaders.WWW_AUTHENTICATE, "Basic realm=\"Take & Wash\"").entity("Ressource requires login.").build());
         }
     }
 }

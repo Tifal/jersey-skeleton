@@ -19,6 +19,7 @@ public class AppSecurityContext implements SecurityContext {
 
     @Override
     public Principal getUserPrincipal() {
+    	System.out.println("get from security context");
         return this.user;
     }
 

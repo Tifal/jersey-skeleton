@@ -1,7 +1,5 @@
 package fr.iutinfo.skeleton.api.command;
 
-import java.sql.Date;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

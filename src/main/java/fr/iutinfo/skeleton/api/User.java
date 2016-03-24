@@ -161,4 +161,8 @@ public class User implements Principal {
     public static boolean isAnonymous(User currentUser) {
         return currentUser.getId() == getAnonymousUser().getId();
     }
+    
+    public static boolean isAdmin(User user) {
+    	return user.getId() == 1;
+    }
 }
