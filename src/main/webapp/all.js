@@ -78,7 +78,7 @@ function postUserGeneric(name, alias, pwd, url) {
 }
 
 function postCommandBdd(userid, address, dateRetrait, dateLivraison, prix) {
-    postUserGeneric(userid, address, dateRetrait, dateLivraison, prix, "v1/commanddb/");
+    postCommandGeneric(userid, address, dateRetrait, dateLivraison, prix, "v1/commanddb/");
 }
 
 function postCommandGeneric(userid, address, dateRetrait, dateLivraison, prix, url) {
@@ -98,10 +98,10 @@ function postCommandGeneric(userid, address, dateRetrait, dateLivraison, prix, u
 			"paid" : 0
 		}),
 		success : function(data, textStatus, jqXHR) {
-			afficheUser(data);
+			console.log(data);
 		},
 		error : function(jqXHR, textStatus, errorThrown) {
-			alert('postUser error: ' + textStatus);
+			alert('postCommand error: ' + errorThrown);
 		}
 	});
 }
