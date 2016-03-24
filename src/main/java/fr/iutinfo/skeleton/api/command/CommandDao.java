@@ -17,7 +17,11 @@ public interface CommandDao {
 	@SqlUpdate("insert into command ( userid,addressLivraison,addressRetrait,dateLivraison,dateRetrait,price,paid) values (:userid,:addressLivraison,:addressRetrait,:dateLivraison,:dateRetrait,:price,0)")
 	@GetGeneratedKeys
 	int insert(@BindBean() Command command);
-
+	
+	@SqlUpdate("update from command set addressRetrait = :addressRetrait, dateRetrait = :dateRetrait, addressLivraison = :addressLivraison, dateLivraison = :dateLiraison, price = :price where id = :id")
+	@GetGeneratedKeys
+	int update(@BindBean() Command command);
+	
 	@SqlQuery("select * from command where id = :id")
     @RegisterMapperFactory(BeanMapperFactory.class)
 	Command findById(@Bind("id") int id);
