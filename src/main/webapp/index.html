@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-    <title>Jersey Skeleton</title>
+    <title>Se connecter à Take & Wash</title>
     <meta charset='utf-8'>
     <!-- jQuery -->
     <script src="//code.jquery.com/jquery-1.11.2.min.js"></script>
@@ -12,92 +12,309 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap-theme.min.css">
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
 
+	<link rel="stylesheet" type="text/css" href="css/style.css" />
+	
     <!-- Code local -->
     <script src="all.js"></script>
 </head>
 <body>
 
-
-
-	<H1 ALIGN=CENTER>Take and wash</H1>
-
-	<div id='status'>
-          <input id='home-button' type='button' name = 'submit' value="Retour à l'accueil">
-      </div>
-    
-    
-     <div id='createaccount'>
-          <h2>Se créer un compte</h2>
-          <form>
-            <input type='text'   name ='login' value='Identifiant'>
-            <input type='text'   name ='pwd'   value='Mot de passe'>
-            <input id='newuser' type='button' name = 'submit' value='Ok'>
-          </form>
-      </div>
-    
-      <input id='create-user' type='button' name = 'submit' value="Pas encore de compte ?">
-    
-     <div id='login'>
-          <h2>S'authentifier</h2>
-          <form>
-            <input type='text'   name ='login' value='Identifiant'>
-            <input type='text'   name ='pwd'   value='Mot de passe'>
-            <input id='newlogin' type='button' name = 'submit' value='Ok'>
-          </form>
-      </div>
-      
-    <div id='order'>
-          <h2>Commander</h2>
-          <form>
-            <input type='text'   name ='addrR' value='Adresse retrait'>
-            <input type='text'   name ='dateR'   value='Date retrait'>
-            
-<br><br><br><input type='text'   name ='addrL' value='Adresse livraison'><br/><br/><br/>
-            <input type='text'   name ='dateL'   value='Date livraison'>
-            
-            <input id='neworder' type='button' name = 'submit' value='Ok'>
-          </form>
-      </div>
-    
+	<div class="container">
+		<div class="login" style="display: block;">
+			<div class="title">
+				<h1>Se connecter à <strong>Take & Wash</strong></h1>
+				<p>Slogan</p>
+			</div>
+			<div class="card">
+				<div class="header">
+					<h2>Connexion</h2>
+					<p>Entrez votre identifiant et votre mot de passe pour vous connecter:</p>
+				</div>
+				<div class="content">
+					<form class="form-horizontal" role="form" id="login-form">
+						<div class="form-group">
+							<label class="control-label col-sm-2" for="user">Nom d'utilisateur:</label>
+							<div class="col-sm-10">
+								<input type="test" class="form-control" id="user" placeholder="Nom d'utilisateur">
+								<div class="alert alert-danger" id="user-error" style="margin-top: 5px; margin-bottom: 0px; display: none;">
+									<strong id="user-error-message"></strong>
+								</div>
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="control-label col-sm-2" for="pwd">Mot de passe:</label>
+							<div class="col-sm-10">
+								<input type="password" maxlength="42" class="form-control" id="pwd" placeholder="Mot de passe">
+								<div class="alert alert-danger" id="pwd-error" style="margin-top: 5px; margin-bottom: 0px; display: none;">
+									<strong id="pwd-error-message"></strong>
+								</div>
+							</div>
+						</div>
+						<div class="form-group">
+							<div class="col-sm-offset-2 col-sm-10">
+								<div class="checkbox">
+									<label><input type="checkbox"> Se souvenir de moi</label>
+								</div>
+							</div>
+						</div>
+						<div class="form-group">
+							<div class="col-sm-offset-2 col-sm-10">
+								<center>
+									<button type="button" class="btn btn-large btn-primary" id="btn-action-login">Se connecter</button>
+								</center>
+							</div>
+						</div>
+					</form>
+				</div>
+			</div>
+			<br />
+			<div class="container">
+				<p>
+					Pas encore inscrit?<br /><br />
+					<button type="button" class="btn btn-large btn-primary" id="btn-register">S'inscrire</button>
+				</p>
+			</div>
+		</div>
+		<div class="register" style="display: none;">
+			<div class="title">
+				<h1>S'inscrire à <strong>Take & Wash</strong></h1>
+				<p>slogan</p>
+			</div>
+			<div class="card">
+				<div class="header">
+					<h2>Inscription</h2>
+					<p>Entrez vos informations pour vous inscrire:</p>
+				</div>
+				<div class="content">
+					<form class="form-horizontal" role="form" id="register-form">
+						<div class="form-group">
+							<label class="control-label col-sm-2" for="name">Nom et prénom:</label>
+							<div class="col-sm-10">
+								<input type="text" class="form-control" id="name" placeholder="Nom et prénom">
+								<div class="alert alert-danger" id="name-error" style="margin-top: 5px; margin-bottom: 0px; display: none;">
+									<strong id="name-error-message"></strong>
+								</div>
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="control-label col-sm-2" for="user">Nom d'utilisateur:</label>
+							<div class="col-sm-10">
+								<input type="text" maxlength="42" class="form-control" id="user" placeholder="Nom d'utilisateur">
+								<div class="alert alert-danger" id="user-error" style="margin-top: 5px; margin-bottom: 0px; display: none;">
+									<strong id="user-error-message"></strong>
+								</div>
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="control-label col-sm-2" for="address">Adresse:</label>
+							<div class="col-sm-10">
+								<input type="text" maxlength="256" class="form-control" id="address" placeholder="Adresse">
+								<div class="alert alert-danger" id="address-error" style="margin-top: 5px; margin-bottom: 0px; display: none;">
+									<strong id="address-error-message"></strong>
+								</div>
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="control-label col-sm-2" for="pwd">Mote de passe:</label>
+							<div class="col-sm-10">
+								<input type="password" maxlength="42" class="form-control" id="pwd" placeholder="Mot de passe">
+								<div class="alert alert-danger" id="pwd-error" style="margin-top: 5px; margin-bottom: 0px; display: none;">
+									<strong id="pwd-error-message"></strong>
+								</div>
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="control-label col-sm-2" for="cpwd">Confirmer le mot de passe:</label>
+							<div class="col-sm-10">
+								<input type="password" maxlength="42" class="form-control" id="cpwd" placeholder="Confirmer le mot de passe">
+								<div class="alert alert-danger" id="cpwd-error" style="margin-top: 5px; margin-bottom: 0px; display: none;">
+									<strong id="cpwd-error-message">Les mots de passes sont différents</strong>
+								</div>
+							</div>
+						</div>
+						<div class="form-group">
+							<div class="col-sm-offset-2 col-sm-10">
+								<center>
+									<button type="button" class="btn btn-large btn-primary" id="btn-action-register">S'inscrire</button>
+								</center>
+							</div>
+						</div>
+					</form>
+				</div>
+			</div>
+			<br />
+			<div class="container">
+				<p>
+					déjà inscrit?<br /><br />
+					<button type="button" class="btn btn-large btn-primary" id="btn-login">Se connecter</button>
+				</p>
+			</div>
+		</div>
+	</div>
+	<div class="loading alert alert-info blink" style="display: none;">
+		<strong id="load-message">Loading...</strong>
+	</div>
+	<div class="popup-error alert alert-danger blink" style="display: none;">
+		<strong id="error-message">Error...</strong>
+	</div>
+	    
     <script type="text/javascript">
-			$(document).ready(function() {
-				
-
-				$("#createaccount").hide();
-				$("#order").hide();
+		$(document).ready(function() {
 			
-				$("#newuser").click(function () {postUser1($("#createaccount [name='login']").val(), $("#createaccount [name='pwd']").val())});
-				
-				$("#create-user").click(function (event) {	$("#createaccount").show(); $("#login").hide(); $("#create-user").hide(); });
-				
-				$("#home-button").click(function (event) {	$("#createaccount").hide(); $("#login").show(); $("#create-user").show(); $("#order").hide(); });
-				
-				//alert($("#login [name='pwd']").val());
-				
-				$("#newlogin").click(function () { postUser2( $("#login [name='login']").val(), $("#login [name='pwd']").val() ) });
-				
-				// $("#neworder").click(function (event) {	alert("Commande passée !"); });
-				
-				
-				$("#neworder").click
-						(
-						function () 
-						{
-						commandDBResource
-						(
-						$("#order [name='addrR']").val(), 
-						$("#order [name='addrL']").val(), 
-						$("#order [name='dateR']").val(), 
-						$("#order [name='dateL']").val(), 
-						$("#order [name='price']").val()
-						)
-						}
-						);
-									
+			$("#btn-register").click(function(){
+				showMenu(".register");
 			});
-
-
-
+			
+			$("#btn-login").click(function(){
+				showMenu(".login");
+			});
+	
+			$("#btn-action-login").click(function(){
+				startLoad("Connexion...");
+				
+				var user = $("#login-form #user").val();
+				var pwd = $("#login-form #pwd").val();
+				
+				var error = false;
+				
+				error |= verifyField("#login-form", user, "#user-error", "#user-error-message", "Le nom d'utilisateur", 4, 42);
+				error |= verifyField("#login-form", pwd, "#pwd-error", "#pwd-error-message", "Le mot de passe", 4, 42);
+				
+				if (error) {
+					stopLoad();
+					return;
+				}
+				
+				$.ajax({
+					type: "GET",
+			        contentType : 'application/json',
+			        url: "v1/secure/onlylogged",
+			        dataType: 'json',
+			        beforeSend : function(req) {
+			        	req.setRequestHeader("Authorization", "Basic " + btoa(user + ":" + pwd));
+			        },
+			        success: function (data){
+			        	showError('Connecter!');
+			        },
+			        error : function(jqXHR, textStatus, errorThrown) {
+			       		showError("Mauvais nom d'utilisateur ou mot de passe!");
+			       	}
+			     });
+			});
+			
+			$("#btn-action-register").click(function(){
+				startLoad("Inscription...");
+				
+				var name = $("#register-form #name").val();
+				var user = $("#register-form #user").val();
+				var address = $("#register-form #address").val();
+				var pwd = $("#register-form #pwd").val();
+				var cpwd = $("#register-form #cpwd").val();
+				
+				var error = false;
+				
+				error |= verifyField("#register-form", name, "#name-error", "#name-error-message", "Le nom", 4, 128);
+				error |= verifyField("#register-form", user, "#user-error", "#user-error-message", "Le nom d'utilisateur", 4, 64);
+				error |= verifyField("#register-form", address, "#address-error", "#address-error-message", "L'address", 8, 256);
+				error |= verifyField("#register-form", pwd, "#pwd-error", "#pwd-error-message", "Le mot de passe", 4, 42);
+				
+				if (pwd != cpwd) {
+					if (!$("#register-form #cpwd-error").is(":visible")) {
+						$("#register-form #cpwd-error").fadeIn();
+					}
+					error = true;
+				} else if ($("#register-form #cpwd-error").is(":visible")) {
+					$("#register-form #cpwd-error").fadeOut();
+				}
+		
+				if (error) {
+					stopLoad();
+					return;
+				}
+				
+				$.ajax({
+					type : 'POST',
+					contentType : 'application/json',
+					url : "v1/userdb",
+					dataType : "json",
+					data : JSON.stringify({
+						"name" : user,
+						"alias" : name,
+						"password" : pwd,
+						"address" : address,
+						"id" : 0
+					}),
+			        success: function (data){
+			        	showError('Inscrit!');
+			        },
+			        error : function(jqXHR, textStatus, errorThrown) {
+			       		showError("Le nom d'utilisateur est déjà utilisé!");
+			       	}
+			     });
+			});
+	
+		});
+		
+		var showMenu = function(div) {
+			if (!$(div).is(":visible")) {
+				stopLoad();
+				if ($('.login').is(":visible")) {
+					$('.login').fadeOut(400, function() {
+						$(div).fadeIn(400);
+					});
+				} else if ($('.register').is(":visible")) {
+					$('.register').fadeOut(400, function() {
+						$(div).fadeIn(400);
+					});
+				}
+			}
+		};
+		
+		var startLoad = function(message) {
+			$("#load-message").text(message);
+			$(".loading").fadeIn(400);
+		};
+		
+		var stopLoad = function() {
+			if ($('.loading').is(":visible")) {
+				$(".loading").fadeOut(400);
+			}
+		};
+		
+		var verifyField = function(form, value, error, errorMessage, columnName, minLength, maxLength) {
+			if (value.length == 0) {
+				$(form + " " + errorMessage).text(columnName + " est requis");
+				if (!$(form + " " + error).is(":visible")) {
+					$(form + " " + error).fadeIn();
+				}
+				return true;
+			} else if (value.length < minLength) {
+				$(form + " " + errorMessage).text(columnName + " est trop court");
+				if (!$(form + " " + error).is(":visible")) {
+					$(form + " " + error).fadeIn();
+				}
+				return true;
+			} else if (value.length > maxLength) {
+				$(form + " " + errorMessage).text(columnName + " est trop long");
+				if (!$(form + " " + error).is(":visible")) {
+					$(form + " " + error).fadeIn();
+				}
+				return true;
+			} else if ($(form + " " + error).is(":visible")) {
+				$(form + " " + error).fadeOut();
+			}
+			return false;
+		};
+		
+		var showError = function(error) {
+			$(".loading").hide();
+			$("#error-message").text(error);
+			$('.popup-error').fadeIn(400, function() {
+				setTimeout(function() {
+					$('.popup-error').fadeOut(400);
+				}, 2000);
+			});
+		};
     </script>
 </body>
 </html>

@@ -33,10 +33,17 @@ public class AuthFilter implements ContainerRequestFilter {
             logger.debug("login : " + loginPassword[0]);
             logger.debug("password : " + loginPassword[1]);
             if (loginPassword == null || loginPassword.length != 2) {
-                throw new WebApplicationException(Status.NOT_ACCEPTABLE);
+            	throw new WebApplicationException(Response.status(Response.Status.NOT_ACCEPTABLE).header(HttpHeaders.WWW_AUTHENTICATE, "Basic realm=\"Take & Wash\"").entity("Ressource requires login.").build());
             }
 
             UserDao dao = BDDFactory.getDbi().open(UserDao.class);
+            try {
+    			dao.createUserTable();
+    			User admin = new User(0, "admin", "admin");
+    			admin.setPassword("admin");
+    			dao.insert(admin);
+    		} catch (Exception e) { }
+            
             User user = dao.findByName(loginPassword[0]);
             if(user != null && !user.isGoodPassword(loginPassword[1]) || user == null) {
             	 throw new WebApplicationException(Response.status(Response.Status.UNAUTHORIZED).header(HttpHeaders.WWW_AUTHENTICATE, "Basic realm=\"Take & Wash\"").entity("Ressource requires login.").build());
@@ -44,7 +51,7 @@ public class AuthFilter implements ContainerRequestFilter {
 
             containerRequest.setSecurityContext(new AppSecurityContext(user, scheme));
         } else {
-        	throw new WebApplicationException(Response.status(Response.Status.UNAUTHORIZED).header(HttpHeaders.WWW_AUTHENTICATE, "Basic realm=\"Take & Wash\"").entity("Ressource requires login.").build());
+        	containerRequest.setSecurityContext(new AppSecurityContext(User.getAnonymousUser(), scheme));
         }
     }
 }

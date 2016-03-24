@@ -4,8 +4,11 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import javax.ws.rs.*;
+import javax.ws.rs.core.Context;
+import javax.ws.rs.core.HttpHeaders;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
+import javax.ws.rs.core.SecurityContext;
 import javax.ws.rs.core.Response.Status;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -30,8 +33,18 @@ public class UserResource {
 
     @DELETE
     @Path("{id}")
-    public Response deleteUser(@PathParam("id") Integer id) {
-        if (users.containsKey(id)) {
+    public Response deleteUser(@Context SecurityContext context, @PathParam("id") Integer id) {
+    	User currentUser = (User) context.getUserPrincipal();
+        logger.debug("Current User :"+ currentUser.toString());
+        if (User.isAnonymous(currentUser)) {
+            throw new WebApplicationException(Response.status(Response.Status.UNAUTHORIZED).header(HttpHeaders.WWW_AUTHENTICATE, "Basic realm=\"Take & Wash\"").entity("Ressource requires login.").build());
+        }
+        
+        if (id != currentUser.getId()) {
+        	throw new WebApplicationException(Response.status(Response.Status.UNAUTHORIZED).header(HttpHeaders.WWW_AUTHENTICATE, "Basic realm=\"Take & Wash\"").entity("Cannot access to this ressource.").build());
+        }
+    	
+    	if (users.containsKey(id)) {
             return Response.accepted().status(Status.ACCEPTED).build();
         }
         return Response.accepted().status(Status.NOT_FOUND).build();
@@ -65,11 +78,22 @@ public class UserResource {
 
     @GET
     @Path("/{name}")
-    public User getUser(@PathParam("name") String name) {
+    public User getUser(@Context SecurityContext context, @PathParam("name") String name) {
+    	User currentUser = (User) context.getUserPrincipal();
+        logger.debug("Current User :"+ currentUser.toString());
+        if (User.isAnonymous(currentUser)) {
+            throw new WebApplicationException(Response.status(Response.Status.UNAUTHORIZED).header(HttpHeaders.WWW_AUTHENTICATE, "Basic realm=\"Take & Wash\"").entity("Ressource requires login.").build());
+        }
+        
         User out = find(name);
         if (out == null) {
             throw new WebApplicationException(404);
         }
+        
+        if (out.getId() != currentUser.getId()) {
+        	throw new WebApplicationException(Response.status(Response.Status.UNAUTHORIZED).header(HttpHeaders.WWW_AUTHENTICATE, "Basic realm=\"Take & Wash\"").entity("Cannot access to this ressource.").build());
+        }
+        
         return out;
     }
 
