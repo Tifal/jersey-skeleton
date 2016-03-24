@@ -19,17 +19,15 @@
 
 <div class="container">
 
-      <header class="page-header row col-lg-offset-2 col-sm-8">
-
-          <div class="col-sm-6">
-            <H1 ALIGN=CENTER>Take & Wash</H1>
+      <header class="page-header row col-lg-offset-2 col-sm-9">
+          <div class="col-sm-12">
+            <H1 ALIGN=CENTER>
+	      Take & Wash
+	      <a class="btn btn-default btn-lg active" href="index.html" role="button">Accueil</a>
+	      <a class="btn btn-primary btn-lg active" href="login.html" role="button">Connection</a>
+	      <a class="btn btn-default btn-lg active" href="#" role="button">Contact</a>
+	    </H1>
           </div>
-          <div class="col-sm-6">
-            <a class="btn btn-default btn-lg active" href="index.html" role="button">Accueil</a>
-	    <a class="btn btn-primary btn-lg active" href="login.html" role="button">Connection</a>
-	    <a class="btn btn-default btn-lg active" href="#" role="button">Contact</a>
-          </div>
-
       </header>
 
       <div class="row">
@@ -55,6 +53,10 @@
 		    </div>
 		  </div>
 	      </form>
+	<div class="alert alert-danger alert-dismissable fade in">
+  	  <i class="icon icon-times-circle icon-lg"></i>
+   	  <strong>Erreur !</strong> Login ou mot de passe incorrect
+	</div>
 
 
 	  </div>
@@ -68,13 +70,12 @@
 
 
     <script type="text/javascript">
-			$(document).ready(function() {
-			
-				$("#newlogin").click(function () {postUser1($("#login [name='login']").val(), $("#login [name='pwd']").val())});
-				
-				// test();
-					
-			});
+
+	
+
+	$(document).ready(function() {	
+		$("#newlogin").click(function () {postUser1($("#login [name='login']").val(), $("#login [name='pwd']").val())});
+	});
 
 
 
