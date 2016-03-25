@@ -1,9 +1,5 @@
 package fr.iutinfo.skeleton.web;
 
-import java.util.ArrayList;
-import java.util.GregorianCalendar;
-import java.util.List;
-
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
@@ -30,7 +26,7 @@ public class BoardViews {
 	
 	@GET
 	@Template
-	public List<Integer> getAll(@Context SecurityContext context) {
+	public String getAll(@Context SecurityContext context) {
 		User currentUser = (User) context.getUserPrincipal();
         if (currentUser == null || !User.isAdmin(currentUser)) {
             throw new WebApplicationException(Response.status(Response.Status.UNAUTHORIZED).header(HttpHeaders.WWW_AUTHENTICATE, "Basic realm=\"Take & Wash\"").entity("Ressource requires login.").build());
@@ -43,11 +39,7 @@ public class BoardViews {
 			ca += Double.valueOf(command.getPrice());
 		}
 		
-		List<Integer> data = new ArrayList<>();
-		data.add(commandes);
-		data.add((int) ca);
-		
-		return data;
+		return String.format("<li class=\"list-group-item\">Nombre de commandes : %d</li><li class=\"list-group-item\">Chiffre d'affaire : %.2f€</li>", commandes, ca);
 	}
 
 }

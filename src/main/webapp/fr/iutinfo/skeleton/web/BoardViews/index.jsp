@@ -16,8 +16,7 @@
             <div class="col-md-6 col-md-offset-3">
                 <h1>Liste des commandes</h1>
                 <ul class="list-group">
-                    <li class="list-group-item">Nombre de commandes : <% ${it}.get(0); %></li>
-                    <li class="list-group-item">Chiffre d'affaire : <% ${it}.get(1); %> €</li>
+                    ${it}
                 </ul>
             </div>
         </div>
