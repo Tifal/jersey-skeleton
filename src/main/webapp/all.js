@@ -236,3 +236,30 @@ function commandDBResource(addressRetrait,
 	
 }
 
+function recupPriceBdd(iPrice, iPositionPrixBdd){
+	
+	$.ajax({
+		type: "GET",
+        contentType : 'application/json',
+        url: "v1/pricedb",
+        dataType: 'json',
+        success: function (data){
+        	
+        	if(iPositionPrixBdd<=5){
+        		$("#order-form #price"+iPrice).val(data[iPositionPrixBdd].price+" /kg TTC");        		
+        	}else{
+        		$("#order-form #price"+iPrice).val(data[iPositionPrixBdd].price+" /à l'unité TTC");        		
+
+        	}
+        	
+        	/*
+        	$(".username-value").html(cleanInput(user) + ' <span class="caret">');
+        	showMenu(".main");
+        	*/
+        },
+        error : function(jqXHR, textStatus, errorThrown) {
+       		showError("error");
+       	}
+     });
+	
+}
