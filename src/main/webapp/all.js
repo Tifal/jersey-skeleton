@@ -249,8 +249,9 @@ function recupPriceBdd(iPrice, iPositionPrixBdd){
         		$("#order-form #price"+iPrice).val(data[iPositionPrixBdd].price+" /kg TTC");        		
         	}else{
         		$("#order-form #price"+iPrice).val(data[iPositionPrixBdd].price+" /à l'unité TTC");        		
-
         	}
+        	
+    		$("#order-form #priceSupp").val(data[27].price+" euros");
         	
         	/*
         	$(".username-value").html(cleanInput(user) + ' <span class="caret">');
