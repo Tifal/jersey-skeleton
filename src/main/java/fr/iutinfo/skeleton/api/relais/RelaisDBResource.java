@@ -23,6 +23,7 @@ public class RelaisDBResource {
     
 	public RelaisDBResource() {
 		try {
+			dao.dropRelaisTable();
 			dao.createRelaisTable();
 			dao.insert(new Relais("Relais factice", "123 rue du relais"));
 		} catch (Exception e) {

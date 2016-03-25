@@ -15,10 +15,24 @@
             <div class="col-md-6 col-md-offset-3">
                 <h1>Relais</h1>
                 <ul class="list-group">
+                <form class="form-inline"  action="/html/relais/" method="post">
+            		 <div class="form-group">
+					    <label for="name">Nom :</label>
+					    <input type="text" class="form-control" id="name" name="name" placeholder="Nom">
+					  </div>
+					  <div class="form-group">
+					    <label for="address">Adresse :</label>
+					    <input type="text" class="form-control" id="address" name="address" placeholder="Adresse">
+					  </div>
+					  <button type="submit" class="btn btn-default">Ajouter</button>
+            	</form>
                 <c:forEach var="relais" items="${it}">
                     <li class="list-group-item">
-                   		Nom du relais : ${relais.name}<br/>
-               			Adresse du relais : ${relais.address}<br/>
+                   		Nom du retrait : ${relais.name}<br/>
+               			Adresse du retrait : ${relais.address}<br/>
+               			<form action="/html/relais/${relais.name}" method="post">
+               				<button type="submit">Supprimer</button>
+            			<form>
                     </li>
                 </c:forEach>
                 </ul>
