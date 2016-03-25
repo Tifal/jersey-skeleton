@@ -11,7 +11,7 @@ import org.skife.jdbi.v2.tweak.BeanMapperFactory;
 
 public interface RelaisDao {
 
-	@SqlUpdate("create table relais (name varchar(64), address varchar(256)")
+	@SqlUpdate("create table relais (name varchar(64), address varchar(256))")
 	void createRelaisTable();
 	
 	@SqlUpdate("insert into relais (name, address) values (:name, :address)")
