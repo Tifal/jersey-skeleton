@@ -8,6 +8,7 @@
 	            <li><a href="/html/user">Utilisateurs</a></li>
 	            <li><a href="/html/command">Commandes</a></li>
 	            <li><a href="/html/planning">Planning</a></li>
+	            <li><a href="/html/pricing">Prix</a></li>
 	          </ul>
 	        </li>
         </ul>

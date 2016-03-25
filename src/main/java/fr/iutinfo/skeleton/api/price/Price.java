@@ -45,4 +45,9 @@ public class Price implements Principal {
         return item.equals(price.item) && this.price == price.price;
 
 	}
+	
+	@Override
+	public String toString() {
+		return item.replaceAll("_", " ").toLowerCase();
+	}
 }

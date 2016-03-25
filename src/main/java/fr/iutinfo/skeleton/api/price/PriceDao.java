@@ -17,6 +17,9 @@ public interface PriceDao {
 	@SqlUpdate("insert into prices (item, price) values (:item, :price)")
 	@GetGeneratedKeys
 	int insert(@BindBean() Price user);
+	
+	@SqlUpdate("update prices set price = :price where item = :item")
+	void update(@BindBean() Price price);
 
 	@SqlQuery("select * from prices where item = :item")
     @RegisterMapperFactory(BeanMapperFactory.class)
