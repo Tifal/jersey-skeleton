@@ -21,6 +21,9 @@ public interface RelaisDao {
 	@SqlUpdate("drop table if exists relais")
 	void dropRelaisTable();
 	
+	@SqlUpdate("delete from relais where name = :name")
+	void deleteRelais(@BindBean() Relais relais);
+	
 	@SqlQuery("select * from relais")
 	@RegisterMapperFactory(BeanMapperFactory.class)
 	List<Relais> all();
