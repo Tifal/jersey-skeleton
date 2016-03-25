@@ -40,11 +40,15 @@ public class PlanningViews {
 		GregorianCalendar aujourdhui = new GregorianCalendar();
 		
 		for(Command command : dao.all()){
-			String[] dateData = command.getDateLivraison().split("/");
-			GregorianCalendar livraison = new GregorianCalendar(Integer.valueOf("20" + dateData[2]), Integer.valueOf(dateData[1]), Integer.valueOf(dateData[0]));
-			
-			if (aujourdhui.before(livraison))
-				commands.add(command);
+			try {
+				String[] dateData = command.getDateLivraison().split(" ")[0].split("/");
+				GregorianCalendar livraison = new GregorianCalendar(Integer.valueOf("20" + dateData[2]), Integer.valueOf(dateData[1]), Integer.valueOf(dateData[0]));
+				
+				if (aujourdhui.before(livraison))
+					commands.add(command);
+			} catch (Exception e) {
+				
+			}
 		}
 		return commands;
 	}
