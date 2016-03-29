@@ -41,8 +41,7 @@ public class CommandViews {
     @Template
     public List<Command> getAll(@Context SecurityContext context) {
 		User currentUser = (User) context.getUserPrincipal();
-      //  if (currentUser == null || !User.isAdmin(currentUser)) {
-		if (currentUser == null ){
+        if (currentUser == null || !User.isAdmin(currentUser)) {
         	System.out.println("User : " + currentUser);
             throw new WebApplicationException(Response.status(Response.Status.UNAUTHORIZED).header(HttpHeaders.WWW_AUTHENTICATE, "Basic realm=\"Take & Wash\"").entity("Ressource requires login.").build());
         }
@@ -55,8 +54,7 @@ public class CommandViews {
     @Path("/{id}")
     public Command getDetail(@Context SecurityContext context, @PathParam("id") String id) {
     	User currentUser = (User) context.getUserPrincipal();
-       // if (currentUser == null || !User.isAdmin(currentUser)) {
-    	if (currentUser == null ){
+        if (currentUser == null || !User.isAdmin(currentUser)) {
             throw new WebApplicationException(Response.status(Response.Status.UNAUTHORIZED).header(HttpHeaders.WWW_AUTHENTICATE, "Basic realm=\"Take & Wash\"").entity("Ressource requires login.").build());
         }
     	Command command = dao.findById(Integer.parseInt(id));
