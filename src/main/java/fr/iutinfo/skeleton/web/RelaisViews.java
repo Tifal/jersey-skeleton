@@ -3,6 +3,7 @@ package fr.iutinfo.skeleton.web;
 import java.util.List;
 
 import javax.ws.rs.Consumes;
+import javax.ws.rs.DELETE;
 import javax.ws.rs.FormParam;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
@@ -53,8 +54,8 @@ private static RelaisDao dao = BDDFactory.getDbi().open(RelaisDao.class);
         dao.insert(new Relais(name, address));
         return dao.all();
     }
-	
-	@POST
+
+	@DELETE
     @Template(name = "deleterelais")
     @Path("/{name}")
     public void delete(@Context SecurityContext context, @PathParam("name") String name) {
