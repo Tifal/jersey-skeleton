@@ -11,14 +11,14 @@ import org.skife.jdbi.v2.sqlobject.customizers.RegisterMapperFactory;
 import org.skife.jdbi.v2.tweak.BeanMapperFactory;
 
 public interface CommandDao {
-	@SqlUpdate("create table command (id integer primary key autoincrement,userid integer,addressLivraison varchar(200),addressRetrait varchar(200),dateRetrait varchar(14),dateLivraison varchar(14), price varchar(10),paid integer(1))")
+	@SqlUpdate("create table command (id integer primary key autoincrement,userid integer,addressLivraison varchar(200),addressRetrait varchar(200),dateRetrait varchar(14),dateLivraison varchar(14), price varchar(10), details varchar(1024), paid integer(1))")
 	void createCommandTable();
 
-	@SqlUpdate("insert into command ( userid,addressLivraison,addressRetrait,dateLivraison,dateRetrait,price,paid) values (:userid,:addressLivraison,:addressRetrait,:dateLivraison,:dateRetrait,:price,0)")
+	@SqlUpdate("insert into command ( userid,addressLivraison,addressRetrait,dateLivraison,dateRetrait,price,details,paid) values (:userid,:addressLivraison,:addressRetrait,:dateLivraison,:dateRetrait,:price,:details,:paid)")
 	@GetGeneratedKeys
 	int insert(@BindBean() Command command);
 	
-	@SqlUpdate("update from command set addressRetrait = :addressRetrait, dateRetrait = :dateRetrait, addressLivraison = :addressLivraison, dateLivraison = :dateLiraison, price = :price where id = :id")
+	@SqlUpdate("update from command set addressRetrait = :addressRetrait, dateRetrait = :dateRetrait, addressLivraison = :addressLivraison, dateLivraison = :dateLiraison, price = :price, details = :details where id = :id")
 	@GetGeneratedKeys
 	int update(@BindBean() Command command);
 	

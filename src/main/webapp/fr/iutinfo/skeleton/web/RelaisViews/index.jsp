@@ -6,14 +6,14 @@
   <head>
     <jsp:include page="/layout/head.jsp"/>
     <meta charset="utf-8">
-    <title>Relais</title>
+    <title>Retraits</title>
   </head>
   <body>
     <jsp:include page="/layout/navbar.jsp"/>
     <div class="container">
         <div class="row">
             <div class="col-md-6 col-md-offset-3">
-                <h1>Relais</h1>
+                <h1>Retraits</h1>
                 <ul class="list-group">
                 <form class="form-inline"  action="/html/relais/" method="post">
             		 <div class="form-group">

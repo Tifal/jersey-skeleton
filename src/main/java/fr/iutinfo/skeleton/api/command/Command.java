@@ -16,13 +16,14 @@ public class Command {
 	private String dateLivraison;
 	private String price = "40.0";
 	private int paid = 0;
+	private String details;
 
 	public Command() {
 
 	}
 
 	public Command(int id, int userid, String addressRetrait, String addressLivraison, String dateRetrait,
-			String dateLivraison, String price) {
+			String dateLivraison, String price, String details) {
 		this.id = id;
 		this.userid = userid;
 		this.addressRetrait = addressRetrait;
@@ -30,6 +31,7 @@ public class Command {
 		this.dateRetrait = dateRetrait;
 		this.dateLivraison = dateLivraison;
 		this.price = price;
+		this.details = details;
 	}
 
 	public int getId() {
@@ -88,12 +90,33 @@ public class Command {
 		this.price = price;
 	}
 
-	public int isPaid() {
+	public int getPaid() {
 		return paid;
 	}
 
 	public void setPaid(int paid) {
 		this.paid = paid;
+	}
+	
+	public String getDetails() {
+		return details;
+	}
+	
+	public void setDetails(String details) {
+		this.details = details;
+	}
+	
+	public String getInfo() {
+		String format = "";
+		
+		String[] data = details.split(";");
+		
+		for (String d : data) {
+			String[] row = d.split(":");
+			format += row[0].toLowerCase().replaceAll("_", " ") + " : " + row[1] + " <br />";
+		}
+		
+		return format;
 	}
 
 }

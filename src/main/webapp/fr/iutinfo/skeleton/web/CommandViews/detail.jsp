@@ -1,6 +1,7 @@
 <%@page contentType="text/html"%>
 <%@page pageEncoding="UTF-8"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ page import="java.util.*,java.io.*;"%>
 <!DOCTYPE html>
 <html lang="fr">
   <head>
@@ -25,7 +26,7 @@
                 adresse de livraison : ${it.addressLivraison} <br />
                 date de livraison : ${it.dateLivraison} <br/>
                 prix de la commande : ${it.price} € <br/>
- 
+ 				detail : <br />${it.info}
               </div>
             </div>
         </div>
