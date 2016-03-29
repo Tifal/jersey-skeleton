@@ -591,16 +591,23 @@
 				
 				// jj/mm/aa hh:mm
 				// 0123456789				
-				/*
-				boolean erreurDate=false;
 				
-				if( !dateR.substring(6, 8).equals(!dateL.substring(6, 8).equals()) ){
-					erreurDate=true;
+				var erreurDate=false;
+				
+				if( dateR.substring(6, 8)<=dateL.substring(6, 8) && dateR.substring(3, 5)<=dateL.substring(3, 5) && dateR.substring(0, 2)<=dateL.substring(0, 2) ){
+					if( jQuery("#order-form #cbox1").prop("checked") ){
+						if(dateL.substring(0, 2)-dateR.substring(0, 2)<2){
+							erreurDate=true;
+						}
+					}else{
+						if(dateL.substring(0, 2)-dateR.substring(0, 2)<3){
+							erreurDate=true;
+						}
+					}
+				}else{
+					erreurDate=true;					
 				}
-				if(){
-					
-				}
-				*/
+				
 				/*
 				if (pwd != cpwd) {
 					if (!$("#register-form #cpwd-error").is(":visible")) {
@@ -611,6 +618,12 @@
 					$("#register-form #cpwd-error").fadeOut();
 				}
 				*/
+				
+				if (erreurDate) {
+					alert("Probleme date");
+					stopLoad();
+					return;
+				}
 				
 				if (error) {
 					stopLoad();
