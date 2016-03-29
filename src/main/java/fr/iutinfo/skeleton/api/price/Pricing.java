@@ -25,7 +25,7 @@ public class Pricing {
 
 	public Pricing() {
 		try {
-			dao.dropPriceTable();
+			//dao.dropPriceTable();
 			dao.createPriceTable();
 
 			BufferedReader reader = new BufferedReader(
