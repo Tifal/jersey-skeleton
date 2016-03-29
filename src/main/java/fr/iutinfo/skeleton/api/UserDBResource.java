@@ -26,9 +26,9 @@ public class UserDBResource {
     public UserDBResource() {
 		try {
 			//dao.createUserTable();
-			User admin = new User(0, "admin", "admin");
+			/*User admin = new User(0, "admin", "admin");
 			admin.setPassword("admin");
-			dao.insert(admin);
+			dao.insert(admin);*/
 		} catch (Exception e) {
 		}
 	}
