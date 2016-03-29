@@ -3,6 +3,7 @@ package fr.iutinfo.skeleton.api.price;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
+import java.sql.SQLException;
 import java.util.List;
 
 import javax.ws.rs.Consumes;
@@ -41,9 +42,11 @@ public class Pricing {
 
 			reader.close();
 
-		} catch (Exception e) {
+		}
+		catch(Exception e){
 			e.printStackTrace();
 		}
+		
 	}
 
 	@GET

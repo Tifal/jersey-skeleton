@@ -36,8 +36,8 @@ public class CommandDBResource {
 		try {
 			//dao.dropCommandTable();
 			dao.createCommandTable();
-			dao.insert(new Command(0, 3, "rue du test unitaire", "rue du bug", "02/10/16 17:30", "03/10/16 17:30", "50.0",
-					"LINGE_QUOTIDIEN_REPASSAGE_PLIAGE:1;LINGE_QUOTIDIEN_LAVAGE_SECHAGE:2"));
+			//dao.insert(new Command(0, 3, "rue du test unitaire", "rue du bug", "02/10/16 17:30", "03/10/16 17:30", "50.0",
+			//		"LINGE_QUOTIDIEN_REPASSAGE_PLIAGE:1;LINGE_QUOTIDIEN_LAVAGE_SECHAGE:2"));
 		} catch (Exception e) {
 			System.out.println("Table déjà là !");
 		}
@@ -53,12 +53,12 @@ public class CommandDBResource {
 					.entity("Ressource requires login.").build());
 		}
 
-		if (command.getUserid() != currentUser.getId()) {
+	/*	if (command.getUserid() != currentUser.getId()) {
 			throw new WebApplicationException(Response.status(Response.Status.UNAUTHORIZED)
 					.header(HttpHeaders.WWW_AUTHENTICATE, "Basic realm=\"Take & Wash\"")
 					.entity("Cannot access to this ressource.").build());
 		}
-
+*/
 		command.setPaid(0);
 
 		// calculate command price

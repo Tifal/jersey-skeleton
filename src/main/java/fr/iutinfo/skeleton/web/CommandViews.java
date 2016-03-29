@@ -29,7 +29,7 @@ public class CommandViews {
 	
 	public CommandViews() {
 		try {
-			dao.dropCommandTable();
+			//dao.dropCommandTable();
 			dao.createCommandTable();
 			dao.insert(new Command(0, 3, "rue du test unitaire", "rue du bug", "02/10/16 17:30", "03/10/16 17:30", "50.0", "LINGE_QUOTIDIEN_REPASSAGE_PLIAGE:1;LINGE_QUOTIDIEN_LAVAGE_SECHAGE:2"));
 		} catch (Exception e) {
@@ -57,7 +57,6 @@ public class CommandViews {
         if (currentUser == null || !User.isAdmin(currentUser)) {
             throw new WebApplicationException(Response.status(Response.Status.UNAUTHORIZED).header(HttpHeaders.WWW_AUTHENTICATE, "Basic realm=\"Take & Wash\"").entity("Ressource requires login.").build());
         }
-    	
     	Command command = dao.findById(Integer.parseInt(id));
         if (command == null) {
             throw new WebApplicationException(Response.Status.NOT_FOUND);
