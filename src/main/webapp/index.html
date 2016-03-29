@@ -461,33 +461,10 @@
 			        	}else{
 				        	showMenu(".order");
 				        	
-				        	// requete recuperer prix et mettre dans page
-
-				        	/*
-				        	$.ajax({
-								type: "GET",
-						        contentType : 'application/json',
-						        url: "v1/pricedb",
-						        dataType: 'json',
-						        success: function (data){
-						        	
-						        	$("#order-form #price1").val(data[0].price+" /kg TTC");
-						        	
-						        },
-						        error : function(jqXHR, textStatus, errorThrown) {
-						       		showError("error");
-						       	}
-						     });
-				        	*/
-				        	
 				        	for(var i=0; i<25 /*25+2*/; i++) {
 				        		// alert("i: "+i);
 				        		recupPriceBdd(i, i);
 				        	}
-				        	
-				        	
-				        	
-				        	
 			        	}
 			        	
 			        	$(".username-value").html(cleanInput(user) + ' <span class="caret">');
@@ -542,8 +519,20 @@
 						"id" : 0
 					}),
 			        success: function (data){
-			        	$(".username-value").html(cleanInput(user) + ' <span class="caret">');
-			        	showMenu(".main");
+			        	// $(".username-value").html(cleanInput(user) + ' <span class="caret">');
+			        	// showMenu(".main");
+			        	
+			        	if (data.id == 1) {
+			        		document.location = '/html/board';
+			        	}else{
+				        	showMenu(".order");
+				        	
+				        	for(var i=0; i<25 /*25+2*/; i++) {
+				        		// alert("i: "+i);
+				        		recupPriceBdd(i, i);
+				        	}
+			        	}
+			        		
 			        },
 			        error : function(jqXHR, textStatus, errorThrown) {
 			       		showError("Le nom d'utilisateur est déjà utilisé!");
@@ -556,6 +545,8 @@
 				
 				var user = $("#login-form #user").val();
 				var pwd = $("#login-form #pwd").val();
+				
+				
 				
 				var addressR = $("#register-form #addressR").val();
 				var dateR = $("#register-form #dateR").val();
@@ -584,14 +575,42 @@
 					stopLoad();
 					return;
 				}
-				/*
-				if($("#cout").equals0){
+				
+				var cout=parseFloat(0);
+				alert("cout 1 : "+cout);
+				$("#order-form #cout").val(cout);				
+				
+				if(/*$("#order-form #cout")==0*/cout==0){
 					// si cout=0 faire requete pour calculer cout et remplir champ, si pas égal 0 passer la commande
 					// donc 1er clic calculer er remplir case cout, 2è clic vraiment passer commande
+					
+					
+					// $("#login [name='login']").val()
+					// $("#order-form #price"+iPrice).val(data[iPositionPrixBdd].price+" /kg TTC");
+					
+					for(var i=0; i<25; i++){
+						var a=parseFloat($("#order-form #price"+i).val().substring( 0, ($("#order-form #price"+i).val().indexOf(" ")) ));
+						//var a=$("#order-form #price"+i);
+						alert("a: "+a+" i: "+i);
+						
+						//alert("a: "+a);
+						var b=parseFloat($("#order-form #kg"+i).val()/*.replace(",", ".")*/);
+						// cout+=$("#order-form #price"+i).val()*$("#order-form #kg"+i).val();
+						alert("b: "+b+" i: "+i);
+						cout+=a*b;
+						alert("cout 2 : "+cout);
+						
+	
+						
+					}
+					
+					$("#order-form #cout").val(cout);				
+
+										
 				}else{
-					code juste en-dessous
+					// code juste en-dessous
 				}
-				*/
+				
 				$.ajax({
 					type : 'POST',
 					contentType : 'application/json',
@@ -607,7 +626,7 @@
 						"addressLivraison" : addressL,
 						"dateRetrait" : dateR,
 						"dateLivraison" : dateL,
-						"price" : 1
+						"price" : cout
 					}),
 					success : function(data, textStatus, jqXHR) {
 						alert("ok");
@@ -649,6 +668,11 @@
 		};
 		
 		var verifyField = function(form, value, error, errorMessage, columnName, minLength, maxLength) {
+			
+			if(value==undefined){
+				alert("Un champ obligatoire est actuellement vide");
+			}else{
+			
 			if (value.length == 0) {
 				$(form + " " + errorMessage).text(columnName + " est requis");
 				if (!$(form + " " + error).is(":visible")) {
@@ -669,6 +693,8 @@
 				return true;
 			} else if ($(form + " " + error).is(":visible")) {
 				$(form + " " + error).fadeOut();
+			}
+			
 			}
 			return false;
 		};

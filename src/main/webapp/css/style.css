@@ -9,7 +9,6 @@ body {
     -webkit-text-size-adjust: none;             /* prevent webkit from resizing text to fit */
     -webkit-user-select: none;                  /* prevent copy paste, to allow, change 'none' to 'text' */
     background: #00aa77;
-    background-image: url("../img/zenbg-1.png"), url("../img/zenbg-2.png");
     background-repeat: repeat-x, repeat;
     font-family:'Work Sans', Arial, sans-serif;
     font-size:12px;
