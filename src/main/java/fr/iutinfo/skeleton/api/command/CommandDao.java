@@ -14,7 +14,7 @@ public interface CommandDao {
 	@SqlUpdate("create table command (id integer primary key autoincrement,userid integer,addressLivraison varchar(200),addressRetrait varchar(200),dateRetrait varchar(14),dateLivraison varchar(14), price varchar(10), details varchar(1024), paid integer(1))")
 	void createCommandTable();
 
-	@SqlUpdate("insert into command ( userid,addressLivraison,addressRetrait,dateLivraison,dateRetrait,price,details,paid) values (:userid,:addressLivraison,:addressRetrait,:dateLivraison,:dateRetrait,:price,:details,:paid)")
+	@SqlUpdate("insert into command ( userid,addressLivraison,addressRetrait,dateLivraison,dateRetrait,price,details,paid) values (:userid,:addressLivraison,:addressRetrait,:dateLivraison,:dateRetrait,:price,:details,0)")
 	@GetGeneratedKeys
 	int insert(@BindBean() Command command);
 	

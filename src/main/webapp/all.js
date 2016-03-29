@@ -236,27 +236,30 @@ function commandDBResource(addressRetrait,
 	
 }
 
-function recupPriceBdd(iPrice, iPositionPrixBdd){
+function recupPriceBdd(){
 	
 	$.ajax({
 		type: "GET",
         contentType : 'application/json',
         url: "v1/pricedb",
         dataType: 'json',
-        success: function (data){
+        success: function (data){       	
+        	console.log(data);
         	
-        	if(iPositionPrixBdd<=5){
-        		$("#order-form #price"+iPrice).val(data[iPositionPrixBdd].price+" /kg TTC");        		
-        	}else{
-        		$("#order-form #price"+iPrice).val(data[iPositionPrixBdd].price+" /à l'unité TTC");        		
+        	for(var i=0; i<25 /*25+2*/; i++) {
+	        	if(i<=5){
+	        		$("#order-form #price"+i).val(data[i].price+" /kg TTC");        		
+	        	}else{
+	        		$("#order-form #price"+i).val(data[i].price+" /à l'unité TTC");        		
+	        	}
+	        	
+	        	/*
+	        	$(".username-value").html(cleanInput(user) + ' <span class="caret">');
+	        	showMenu(".main");
+	        	*/
         	}
         	
-    		$("#order-form #priceSupp").val(data[27].price+" euros");
-        	
-        	/*
-        	$(".username-value").html(cleanInput(user) + ' <span class="caret">');
-        	showMenu(".main");
-        	*/
+        	$("#order-form #priceSupp").val(data[27].price+" euros");
         },
         error : function(jqXHR, textStatus, errorThrown) {
        		showError("error");

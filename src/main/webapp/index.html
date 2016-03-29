@@ -461,10 +461,7 @@
 			        	}else{
 				        	showMenu(".order");
 				        	
-				        	for(var i=0; i<25 /*25+2*/; i++) {
-				        		// alert("i: "+i);
-				        		recupPriceBdd(i, i);
-				        	}
+				        	recupPriceBdd();
 			        	}
 			        	
 			        	$(".username-value").html(cleanInput(user) + ' <span class="caret">');
