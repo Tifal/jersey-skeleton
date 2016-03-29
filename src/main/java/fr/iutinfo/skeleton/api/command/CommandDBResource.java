@@ -34,7 +34,7 @@ public class CommandDBResource {
 
 	public CommandDBResource() {
 		try {
-			dao.dropCommandTable();
+			//dao.dropCommandTable();
 			dao.createCommandTable();
 			dao.insert(new Command(0, 3, "rue du test unitaire", "rue du bug", "02/10/16 17:30", "03/10/16 17:30", "50.0",
 					"LINGE_QUOTIDIEN_REPASSAGE_PLIAGE:1;LINGE_QUOTIDIEN_LAVAGE_SECHAGE:2"));
@@ -79,8 +79,11 @@ public class CommandDBResource {
 			}
 		}
 		
-		command.setPrice(String.format("%.2f",total));
+		command.setPrice(String.format("%.2f",total).replaceAll(",", "."));
 
+		System.err.println("command.getDateLivraison(): "+command.getDateLivraison());
+		System.out.println(command.toString());
+		
 		int id = dao.insert(command);
 		command.setId(id);
 		return command;

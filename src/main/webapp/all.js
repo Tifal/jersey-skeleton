@@ -237,7 +237,6 @@ function commandDBResource(addressRetrait,
 }
 
 function recupPriceBdd(){
-	
 	$.ajax({
 		type: "GET",
         contentType : 'application/json',

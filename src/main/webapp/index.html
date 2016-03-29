@@ -365,7 +365,7 @@
 						<div class="form-group">
 							<label class="control-label col-sm-2" for="dateR">Date de retrait:</label>
 							<div class="col-sm-10">
-								<input type="text" class="form-control" id="dateR" placeholder="Date de retrait">
+								<input type="text" class="form-control" id="dateR" placeholder="Date de retrait: jj/mm/aa hh:mm">
 								<div class="alert alert-danger" id="dateR-error" style="margin-top: 5px; margin-bottom: 0px; display: none;">
 									<strong id="dateR-error-message"></strong>
 								</div>
@@ -383,7 +383,7 @@
 						<div class="form-group">
 							<label class="control-label col-sm-2" for="dateL">Date de livraison:</label>
 							<div class="col-sm-10">
-								<input type="text" class="form-control" id="dateL" placeholder="Date de livraison">
+								<input type="text" class="form-control" id="dateL" placeholder="Date de livraison: jj/mm/aa hh:mm">
 								<div class="alert alert-danger" id="dateL-error" style="margin-top: 5px; margin-bottom: 0px; display: none;">
 									<strong id="dateL-error-message"></strong>
 								</div>
@@ -540,23 +540,67 @@
 			$("#btn-action-order").click(function(){
 				startLoad("Commander...");
 				
+				// 00/00/00 00:00
+				
 				var user = $("#login-form #user").val();
 				var pwd = $("#login-form #pwd").val();
 				
 				
 				
-				var addressR = $("#register-form #addressR").val();
-				var dateR = $("#register-form #dateR").val();
-				var addressL = $("#register-form #addressL").val();
-				var dateL = $("#register-form #dateL").val();
+				var addressR = $("#order-form #addressR").val();
+				var dateR = $("#order-form #dateR").val();
+				var addressL = $("#order-form #addressL").val();
+				var dateL = $("#order-form #dateL").val();
 
 				var error = false;
 				
-				error |= verifyField("#register-form", addressR, "#addressR-error", "#addressR-error-message", "L'addresse de retrait", 8, 256);
-				error |= verifyField("#register-form", dateR, "#dateR-error", "#dateR-error-message", "La date de retrait", 16, 16);
-				error |= verifyField("#register-form", addressL, "#addressL-error", "#addressL-error-message", "L'addresse de livraison", 8, 256);
-				error |= verifyField("#register-form", dateL, "#dateL-error", "#dateL-error-message", "La date de livraison", 16, 16);
+				error |= verifyField("#order-form", addressR, "#addressR-error", "#addressR-error-message", "L'addresse de retrait", 8, 256);
+				error |= verifyField("#order-form", dateR, "#dateR-error", "#dateR-error-message", "La date de retrait", 14, 14);
+				error |= verifyField("#order-form", addressL, "#addressL-error", "#addressL-error-message", "L'addresse de livraison", 8, 256);
+				error |= verifyField("#order-form", dateL, "#dateL-error", "#dateL-error-message", "La date de livraison", 14, 14);
 				
+				var vData;
+				
+				$.ajax({
+					type : 'GET',
+					contentType : 'application/json',
+					url : "v1/commanddb/",
+					dataType : "json",
+					beforeSend : function(req) {
+			        	req.setRequestHeader("Authorization", "Basic " + btoa(user + ":" + pwd));
+			        },/*
+			        data : JSON.stringify({
+						"id" : 0,
+						"userid" : userIdCourant,
+						"addressRetrait" : addressR,
+						"addressLivraison" : addressL,
+						"dateRetrait" : dateR,
+						"dateLivraison" : dateL,
+						"price" : cout,
+						"details" : sDetails
+					}),*/
+					success : function(data, textStatus, jqXHR) {
+						vData=data;
+						alert("ok");
+						console.log(data.id +" - "+ data.userid+" - "+data.addressRetrait+" - "+data.addressLivraison+" - "+data.dateRetrait+" - "+data.dateLivraison+" - "+data.price);
+					},
+					error : function(jqXHR, textStatus, errorThrown) {
+						alert('error: ' + textStatus);
+					}
+				});
+				
+				// jj/mm/aa hh:mm
+				// 0123456789				
+				/*
+				boolean erreurDate=false;
+				
+				if( !dateR.substring(6, 8).equals(!dateL.substring(6, 8).equals()) ){
+					erreurDate=true;
+				}
+				if(){
+					
+				}
+				*/
 				/*
 				if (pwd != cpwd) {
 					if (!$("#register-form #cpwd-error").is(":visible")) {
@@ -574,39 +618,59 @@
 				}
 				
 				var cout=parseFloat(0);
-				alert("cout 1 : "+cout);
+				//alert("cout 1 : "+cout);
+				
+				var sDetails="";
+				
 				$("#order-form #cout").val(cout);				
 				
-				if(/*$("#order-form #cout")==0*/cout==0){
-					// si cout=0 faire requete pour calculer cout et remplir champ, si pas égal 0 passer la commande
-					// donc 1er clic calculer er remplir case cout, 2è clic vraiment passer commande
-					
-					
-					// $("#login [name='login']").val()
-					// $("#order-form #price"+iPrice).val(data[iPositionPrixBdd].price+" /kg TTC");
-					
+			
+						
 					for(var i=0; i<25; i++){
 						var a=parseFloat($("#order-form #price"+i).val().substring( 0, ($("#order-form #price"+i).val().indexOf(" ")) ));
 						//var a=$("#order-form #price"+i);
-						alert("a: "+a+" i: "+i);
+						//alert("a: "+a+" i: "+i);
 						
 						//alert("a: "+a);
 						var b=parseFloat($("#order-form #kg"+i).val()/*.replace(",", ".")*/);
 						// cout+=$("#order-form #price"+i).val()*$("#order-form #kg"+i).val();
-						alert("b: "+b+" i: "+i);
+						//alert("b: "+b+" i: "+i);
 						cout+=a*b;
-						alert("cout 2 : "+cout);
+						//alert("cout 2 : "+cout);
 						
 	
 						
 					}
 					
+						sDetails+="LINGE_QUOTIDIEN_REPASSAGE_PLIAGE:"+$("#order-form #kg"+0).val()+";"+
+						"LINGE_QUOTIDIEN_LAVAGE_SECHAGE:"+$("#order-form #kg"+1).val()+";"+
+						"LINGE_QUOTIDIEN_LAVAGE_SECHAGE_REPASSAGE:"+$("#order-form #kg"+2).val()+";"+
+						"LINGE_DE_MAISON_REPASSAGE_PLIAGE:"+$("#order-form #kg"+3).val()+";"+
+						"LINGE_DE_MAISON_LAVAGE_SECHAGE:"+$("#order-form #kg"+4).val()+";"+
+						"LINGE_DE_MAISON_LAVAGE_SECHAGE_REPASSAGE:"+$("#order-form #kg"+5).val()+";"+
+						"CHEMISE_REPASSAGE_CINTRE:"+$("#order-form #kg"+6).val()+";"+
+						"CHEMISE_REPASSAGE_PLIAGE:"+$("#order-form #kg"+7).val()+";"+
+						"CHEMISE_LAVAGE_REPASSAGE_CINTRE:"+$("#order-form #kg"+8).val()+";"+
+						"CHEMISE_LAVAGE_REPASSAGE_PLIAGE:"+$("#order-form #kg"+9).val()+";"+
+						"PRESSING_VESTE_VESTON:"+$("#order-form #kg"+10).val()+";"+
+						"PRESSING_PANTALON:"+$("#order-form #kg"+11).val()+";"+
+						"PRESSING_COSTUME:"+$("#order-form #kg"+12).val()+";"+
+						"PRESSING_JUPE_SIMPLE_PLISSEE:"+$("#order-form #kg"+13).val()+";"+
+						"PRESSING_ROBE_SIMPLE:"+$("#order-form #kg"+14).val()+";"+
+						"PRESSING_ROBE_DE_SOIREE:"+$("#order-form #kg"+15).val()+";"+
+						"PRESSING_BLOUSON:"+$("#order-form #kg"+16).val()+";"+
+						"PRESSING_DOUDOUNE_BLUSON_DE_SKI:"+$("#order-form #kg"+17).val()+";"+
+						"PRESSING_MANTEAU_IMPERMEABLE_TRENCH:"+$("#order-form #kg"+18).val()+";"+
+						"PRESSING_ECHARPE_LAINE_SOIE:"+$("#order-form #kg"+19).val()+";"+
+						"PRESSING_CRAVATE:"+$("#order-form #kg"+20).val()+";"+
+						"PRESSING_PULL_GILET:"+$("#order-form #kg"+21).val()+";"+
+						"PRESSING_CHEMISIER_SIMPLE_SOIE:"+$("#order-form #kg"+22).val()+";"+
+						"PRESSING_COUETTE_SYNTHETIQUE:"+$("#order-form #kg"+23).val()+";"+
+						"PRESSING_COUETTE_PLUME:"+$("#order-form #kg"+24).val();
+					
 					$("#order-form #cout").val(cout);				
 
 										
-				}else{
-					// code juste en-dessous
-				}
 				
 				$.ajax({
 					type : 'POST',
@@ -623,7 +687,8 @@
 						"addressLivraison" : addressL,
 						"dateRetrait" : dateR,
 						"dateLivraison" : dateL,
-						"price" : cout
+						"price" : cout,
+						"details" : sDetails
 					}),
 					success : function(data, textStatus, jqXHR) {
 						alert("ok");
@@ -665,11 +730,11 @@
 		};
 		
 		var verifyField = function(form, value, error, errorMessage, columnName, minLength, maxLength) {
-			
+			/*
 			if(value==undefined){
 				alert("Un champ obligatoire est actuellement vide");
 			}else{
-			
+			*/
 			if (value.length == 0) {
 				$(form + " " + errorMessage).text(columnName + " est requis");
 				if (!$(form + " " + error).is(":visible")) {
@@ -691,8 +756,8 @@
 			} else if ($(form + " " + error).is(":visible")) {
 				$(form + " " + error).fadeOut();
 			}
-			
-			}
+			/*
+			}*/
 			return false;
 		};
 		

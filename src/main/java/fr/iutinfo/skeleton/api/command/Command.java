@@ -6,6 +6,13 @@ import org.slf4j.LoggerFactory;
 import fr.iutinfo.skeleton.api.User;
 
 public class Command {
+	@Override
+	public String toString() {
+		return "Command [id=" + id + ", userid=" + userid + ", addressRetrait=" + addressRetrait + ", addressLivraison="
+				+ addressLivraison + ", dateRetrait=" + dateRetrait + ", dateLivraison=" + dateLivraison + ", price="
+				+ price + ", paid=" + paid + ", details=" + details + "]";
+	}
+
 	final static Logger logger = LoggerFactory.getLogger(User.class);
 
 	private int id = 0;
@@ -97,25 +104,29 @@ public class Command {
 	public void setPaid(int paid) {
 		this.paid = paid;
 	}
-	
+
 	public String getDetails() {
 		return details;
 	}
-	
+
 	public void setDetails(String details) {
 		this.details = details;
 	}
-	
+
 	public String getInfo() {
 		String format = "";
-		
-		String[] data = details.split(";");
-		
-		for (String d : data) {
-			String[] row = d.split(":");
-			format += "<li class=\"list-group-item\">" + row[0].toLowerCase().replaceAll("_", " ") + " : " + row[1] + "</li>";
+
+		try {
+			String[] data = details.split(";");
+
+			for (String d : data) {
+				String[] row = d.split(":");
+				format += "<li class=\"list-group-item\">" + row[0].toLowerCase().replaceAll("_", " ") + " : " + row[1]
+						+ "</li>";
+			}
+		} catch (Exception e) {
+			System.err.println("cannot read command info : " + details);
 		}
-		
 		return format;
 	}
 

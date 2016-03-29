@@ -25,7 +25,7 @@ public class UserDBResource {
 
     public UserDBResource() {
 		try {
-			dao.createUserTable();
+			//dao.createUserTable();
 			User admin = new User(0, "admin", "admin");
 			admin.setPassword("admin");
 			dao.insert(admin);
