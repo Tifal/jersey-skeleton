@@ -365,7 +365,7 @@
 						<div class="form-group">
 							<label class="control-label col-sm-2" for="dateR">Date de retrait:</label>
 							<div class="col-sm-10">
-								<input type="text" class="form-control" id="dateR" placeholder="Date de retrait">
+								<input type="text" class="form-control" id="dateR" placeholder="Date de retrait: jj/mm/aa hh:mm">
 								<div class="alert alert-danger" id="dateR-error" style="margin-top: 5px; margin-bottom: 0px; display: none;">
 									<strong id="dateR-error-message"></strong>
 								</div>
@@ -383,7 +383,7 @@
 						<div class="form-group">
 							<label class="control-label col-sm-2" for="dateL">Date de livraison:</label>
 							<div class="col-sm-10">
-								<input type="text" class="form-control" id="dateL" placeholder="Date de livraison">
+								<input type="text" class="form-control" id="dateL" placeholder="Date de livraison: jj/mm/aa hh:mm">
 								<div class="alert alert-danger" id="dateL-error" style="margin-top: 5px; margin-bottom: 0px; display: none;">
 									<strong id="dateL-error-message"></strong>
 								</div>
@@ -562,6 +562,48 @@
 				error |= verifyField("#order-form", addressL, "#addressL-error", "#addressL-error-message", "L'addresse de livraison", 8, 256);
 				error |= verifyField("#order-form", dateL, "#dateL-error", "#dateL-error-message", "La date de livraison", 14, 14);
 				
+				var vData;
+				
+				$.ajax({
+					type : 'GET',
+					contentType : 'application/json',
+					url : "v1/commanddb/",
+					dataType : "json",
+					beforeSend : function(req) {
+			        	req.setRequestHeader("Authorization", "Basic " + btoa(user + ":" + pwd));
+			        },/*
+			        data : JSON.stringify({
+						"id" : 0,
+						"userid" : userIdCourant,
+						"addressRetrait" : addressR,
+						"addressLivraison" : addressL,
+						"dateRetrait" : dateR,
+						"dateLivraison" : dateL,
+						"price" : cout,
+						"details" : sDetails
+					}),*/
+					success : function(data, textStatus, jqXHR) {
+						vData=data;
+						alert("ok");
+						console.log(data.id +" - "+ data.userid+" - "+data.addressRetrait+" - "+data.addressLivraison+" - "+data.dateRetrait+" - "+data.dateLivraison+" - "+data.price);
+					},
+					error : function(jqXHR, textStatus, errorThrown) {
+						alert('error: ' + textStatus);
+					}
+				});
+				
+				// jj/mm/aa hh:mm
+				// 0123456789				
+				/*
+				boolean erreurDate=false;
+				
+				if( !dateR.substring(6, 8).equals(!dateL.substring(6, 8).equals()) ){
+					erreurDate=true;
+				}
+				if(){
+					
+				}
+				*/
 				/*
 				if (pwd != cpwd) {
 					if (!$("#register-form #cpwd-error").is(":visible")) {

@@ -36,7 +36,7 @@ public class CommandDBResource {
 		try {
 			//dao.dropCommandTable();
 			dao.createCommandTable();
-			dao.insert(new Command(0, 3, "rue du test unitaire", "rue du bug", "02/10/16", "03/10/16", "50.0",
+			dao.insert(new Command(0, 3, "rue du test unitaire", "rue du bug", "02/10/16 08:00", "03/10/16 12:00", "50.0",
 					"LINGE_QUOTIDIEN_REPASSAGE_PLIAGE:1;LINGE_QUOTIDIEN_LAVAGE_SECHAGE:2"));
 		} catch (Exception e) {
 			System.out.println("Table déjà là !");

@@ -237,7 +237,9 @@ function commandDBResource(addressRetrait,
 }
 
 function recupPriceBdd(iPrice, iPositionPrixBdd){
-	
+	if(iPositionPrixBdd=='undefined'){
+		iPositionPrixBdd=0;
+	}
 	$.ajax({
 		type: "GET",
         contentType : 'application/json',
