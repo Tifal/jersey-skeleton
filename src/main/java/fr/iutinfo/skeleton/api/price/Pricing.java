@@ -22,29 +22,31 @@ import fr.iutinfo.skeleton.api.BDDFactory;
 public class Pricing {
 	private static PriceDao dao = BDDFactory.getDbi().open(PriceDao.class);
 	final static Logger logger = LoggerFactory.getLogger(Price.class);
-	
+
 	public Pricing() {
 		try {
 			dao.dropPriceTable();
 			dao.createPriceTable();
-			
-			BufferedReader reader = new BufferedReader(new FileReader(new File("pricing")));
-			
+
+			BufferedReader reader = new BufferedReader(
+					new FileReader(new File(Pricing.class.getResource("/pricing").getFile())));
+
 			String price = null;
-			
+
 			while ((price = reader.readLine()) != null) {
 				String[] data = price.split(":");
 				dao.insert(new Price(data[0], data[1]));
 			}
-			
+
 			reader.close();
+
 		} catch (Exception e) {
-			
+			e.printStackTrace();
 		}
 	}
 
 	@GET
-	@Produces(MediaType.APPLICATION_JSON)	
+	@Produces(MediaType.APPLICATION_JSON)
 	public List<Price> getAllPrices() {
 		return dao.all();
 	}
