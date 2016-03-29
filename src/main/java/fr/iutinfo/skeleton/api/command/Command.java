@@ -113,7 +113,7 @@ public class Command {
 		
 		for (String d : data) {
 			String[] row = d.split(":");
-			format += row[0].toLowerCase().replaceAll("_", " ") + " : " + row[1] + " <br />";
+			format += "<li class=\"list-group-item\">" + row[0].toLowerCase().replaceAll("_", " ") + " : " + row[1] + "</li>";
 		}
 		
 		return format;

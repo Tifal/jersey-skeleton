@@ -25,8 +25,11 @@
                 date de retrait : ${it.dateRetrait} <br/>
                 adresse de livraison : ${it.addressLivraison} <br />
                 date de livraison : ${it.dateLivraison} <br/>
-                prix de la commande : ${it.price} € <br/>
- 				detail : <br />${it.info}
+                prix de la commande : ${it.price} € <br/><br />
+ 				detail : 
+ 				<ul class="list-group">
+ 					<br />${it.info}
+ 				 </ul>
               </div>
             </div>
         </div>
