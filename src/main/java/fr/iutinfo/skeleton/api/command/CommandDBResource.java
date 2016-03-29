@@ -131,13 +131,13 @@ public class CommandDBResource {
 		if (oldUser == null) {
 			throw new WebApplicationException(404);
 		}
-
+/*
 		if (command.getUserid() != currentUser.getId()) {
 			throw new WebApplicationException(Response.status(Response.Status.UNAUTHORIZED)
 					.header(HttpHeaders.WWW_AUTHENTICATE, "Basic realm=\"Take & Wash\"")
 					.entity("Cannot access to this ressource.").build());
 		}
-
+*/
 		dao.update(command);
 		return command;
 	}
