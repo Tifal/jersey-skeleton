@@ -1,0 +1,50 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent" android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    tools:context="fr.univ_lille1.iut_info.pohlem.s4projetagile.menu_client">
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Passer une commande"
+        android:id="@+id/passerCom"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true"
+        android:onClick="passerCommande" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/button_mon_compte"
+        android:id="@+id/accederCompte"
+        android:layout_gravity="center"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_toLeftOf="@+id/accederCommandes"
+        android:layout_toStartOf="@+id/accederCommandes"
+        android:onClick="onMyCompte" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Mes Commandes"
+        android:id="@+id/accederCommandes"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
+
+    <Button
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/deco"
+        android:id="@+id/button_deco"
+        android:layout_alignParentBottom="true"
+        android:layout_alignRight="@+id/accederCommandes"
+        android:layout_alignEnd="@+id/accederCommandes"
+        android:onClick="doDeco" />
+
+</RelativeLayout>

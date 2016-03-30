@@ -1,0 +1,67 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent" android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:paddingBottom="@dimen/activity_vertical_margin" tools:context=".connexion">
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/nomCompte"
+        android:hint="Nom de Compte"
+        android:layout_above="@+id/mdp"
+        android:layout_centerHorizontal="true" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textPassword"
+        android:ems="10"
+        android:id="@+id/mdp"
+        android:hint="Mot de passe"
+        android:layout_above="@+id/Connect"
+        android:layout_alignLeft="@+id/nomCompte"
+        android:layout_alignStart="@+id/nomCompte"
+        android:layout_alignRight="@+id/nomCompte"
+        android:layout_alignEnd="@+id/nomCompte" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Se Connecter"
+        android:id="@+id/Connect"
+        android:onClick="onConnect"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Vous n&apos;avez pas encore de compte ?"
+        android:id="@+id/textView2"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="60dp" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="S&apos;inscrire"
+        android:id="@+id/Inscrire"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:onClick="onInscrire" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Déjà membre ?"
+        android:id="@+id/textView15"
+        android:layout_above="@+id/nomCompte"
+        android:layout_alignLeft="@+id/Connect"
+        android:layout_alignStart="@+id/Connect"
+        android:layout_marginBottom="47dp" />
+</RelativeLayout>
