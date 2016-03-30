@@ -28,7 +28,7 @@
 				<h1>
 					Se connecter à <strong>Take & Wash</strong>
 				</h1>
-				<p>Slogan</p>
+				<p>Votre linge ramassé, traité, livré où vous voulez</p>
 			</div>
 			<div class="card">
 				<div class="header">
@@ -64,14 +64,6 @@
 						</div>
 						<div class="form-group">
 							<div class="col-sm-offset-2 col-sm-10">
-								<div class="checkbox">
-									<label><input type="checkbox"> Se souvenir de
-										moi</label>
-								</div>
-							</div>
-						</div>
-						<div class="form-group">
-							<div class="col-sm-offset-2 col-sm-10">
 								<center>
 									<button type="button" class="btn btn-large btn-primary"
 										id="btn-action-login">Se connecter</button>
@@ -84,7 +76,7 @@
 			<br />
 			<div class="container">
 				<p>
-					Pas encore inscrit?<br />
+					Pas encore inscrit ?<br />
 					<br />
 					<button type="button" class="btn btn-large btn-primary"
 						id="btn-register">S'inscrire</button>
@@ -96,7 +88,7 @@
 				<h1>
 					S'inscrire à <strong>Take & Wash</strong>
 				</h1>
-				<p>slogan</p>
+				<p>Votre linge ramassé, traité, livré où vous voulez</p>
 			</div>
 			<div class="card">
 				<div class="header">
@@ -179,7 +171,7 @@
 			<br />
 			<div class="container">
 				<p>
-					déjà inscrit?<br />
+					Déjà inscrit ?<br />
 					<br />
 					<button type="button" class="btn btn-large btn-primary"
 						id="btn-login">Se connecter</button>
@@ -203,27 +195,18 @@
 				<div class="collapse navbar-collapse"
 					id="bs-example-navbar-collapse-1">
 					<ul class="nav navbar-nav">
-						<li class="active"><a href="#">Acceuil <span
-								class="sr-only">(current)</span></a></li>
-						<li><a href="#">Tarifs</a></li>
-						<li class="dropdown"><a href="#" class="dropdown-toggle"
-							data-toggle="dropdown" role="button" aria-haspopup="true"
-							aria-expanded="false">Commandes <span class="caret"></span></a>
-							<ul class="dropdown-menu">
-								<li><a href="#">Commander</a></li>
-								<li><a href="#">Mes commandes</a></li>
-							</ul></li>
+						
 					</ul>
 					<ul class="nav navbar-nav navbar-right">
-						<li><a href="#">Nous contacter</a></li>
+
 						<li class="dropdown"><a href="#"
 							class="dropdown-toggle username-value" data-toggle="dropdown"
 							role="button" aria-haspopup="true" aria-expanded="false">Username
 								<span class="caret"></span>
 						</a>
 							<ul class="dropdown-menu">
-								<li><a href="#">Paramètres</a></li>
-								<li><a href="#">Se déconnecter</a></li>
+
+								<li><a href="#" id="logout">Se déconnecter</a></li>
 							</ul></li>
 					</ul>
 				</div>
@@ -238,12 +221,11 @@
 		<strong id="error-message">Error...</strong>
 	</div>
 
-	<div class="order" style="display: none;">
+	<div class="order container" style="display: none;">
 		<div class="title">
 			<h1>
 				Commander -><strong>Take & Wash</strong>
 			</h1>
-			<p>slogan</p>
 		</div>
 		<div class="card">
 			<div class="header">
@@ -446,7 +428,7 @@
 								placeholder="Nombre de kg">
 						</div>
 						<h3>Informations :</h3>
-						<div class="form-group">
+						
 							<label class="control-label col-sm-2" for="addressR">Adresse
 								de retrait:</label>
 							<div class="col-sm-10">
@@ -457,8 +439,8 @@
 									<strong id="addressR-error-message"></strong>
 								</div>
 							</div>
-						</div>
-						<div class="form-group">
+						
+
 							<label class="control-label col-sm-2" for="dateR">Date de
 								retrait:</label>
 							<div class="col-sm-10">
@@ -469,8 +451,8 @@
 									<strong id="dateR-error-message"></strong>
 								</div>
 							</div>
-						</div>
-						<div class="form-group">
+
+
 							<label class="control-label col-sm-2" for="addressL">Adresse
 								de livraison:</label>
 							<div class="col-sm-10">
@@ -480,9 +462,9 @@
 									style="margin-top: 5px; margin-bottom: 0px; display: none;">
 									<strong id="addressL-error-message"></strong>
 								</div>
-							</div>
+
 						</div>
-						<div class="form-group">
+
 							<label class="control-label col-sm-2" for="dateL">Date de
 								livraison:</label>
 							<div class="col-sm-10">
@@ -493,9 +475,9 @@
 									<strong id="dateL-error-message"></strong>
 								</div>
 							</div>
-						</div>
+
 						<h3>Suppléments:</h3>
-						<div class="form-group">
+
 							<label class="control-label col-sm-2" for="addressR">Service
 								express 48H</label>
 							<div class="col-sm-10">
@@ -504,8 +486,8 @@
 									type="checkbox" id="cbox1" value="premiere_checkbox"></label><br>
 							</div>
 							<h3>Coûts:</h3>
-							<div class="form-group">
-								<label class="control-label col-sm-2" for="addressR" id="cout"
+
+								<label class="control-label col-sm-2" for="cout" id="cout"
 									value="0">Coûts:</label>
 								<div class="col-sm-10">
 									<input type="" maxlength="256" class="form-control" id="cout"
@@ -514,14 +496,19 @@
 									style="margin-top: 5px; margin-bottom: 0px; display: none;">
 									<strong id="cout-error-message"></strong>
 								</div>
-								<div class="form-group">
+
 									<div class="col-sm-offset-2 col-sm-10">
 										<center>
 											<button type="button" class="btn btn-large btn-primary"
 												id="btn-action-order">Commander</button>
 										</center>
 									</div>
+								
 								</div>
+
+								
+								
+								
 				</form>
 			</div>
 		</div>
@@ -540,6 +527,10 @@
 							});
 
 							$("#btn-login").click(function() {
+								showMenu(".login");
+							});
+							
+							$("#logout").click(function() {
 								showMenu(".login");
 							});
 
@@ -818,7 +809,7 @@
 																	textStatus,
 																	jqXHR) {
 																vData = data;
-																alert("ok");
+																//alert("ok");
 																console
 																		.log(data.id
 																				+ " - "
@@ -893,7 +884,7 @@
 												 */
 
 												if (erreurDate) {
-													alert("Probleme date");
+													alert("Probleme date (service 72h si pas option express)");
 													stopLoad();
 													return;
 												}
@@ -948,11 +939,12 @@
 												if(cout<30 || !$.isNumeric(cout)){
 													verifyField(
 															"#order-form",
-															addressR,
+															cout,
 															"#cout-error",
 															"#cout-error-message",
-															"Cout",
-															8, 256);
+															"cout",
+															-1, -1);
+													alert("La commande doit être au moins égale à 30 euros");
 													stopLoad();
 													return;
 												}
@@ -1116,7 +1108,7 @@
 																	data,
 																	textStatus,
 																	jqXHR) {
-																alert("ok");
+																alert("Commande ok");
 																console
 																		.log(data.id
 																				+ " - "
@@ -1156,6 +1148,11 @@
 					$('.register').fadeOut(400, function() {
 						$(div).fadeIn(400);
 					});
+				} else if ($('.order').is(":visible")) {
+					$('.order').fadeOut(400, function() {
+						$(div).fadeIn(400);
+					});
+					$('.main').fadeOut(400);
 				}
 			}
 		};
