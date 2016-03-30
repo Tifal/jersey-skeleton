@@ -54,12 +54,7 @@ public class CommandDBResource {
 					.entity("Ressource requires login.").build());
 		}
 
-		if (command.getUserid() != currentUser.getId()) {
-			throw new WebApplicationException(Response.status(Response.Status.UNAUTHORIZED)
-					.header(HttpHeaders.WWW_AUTHENTICATE, "Basic realm=\"Take & Wash\"")
-					.entity("Cannot access to this ressource.").build());
-		}
-
+		command.setUserid(currentUser.getId());
 		command.setPaid(0);
 
 		// calculate command price
