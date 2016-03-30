@@ -427,6 +427,7 @@
 							<input type="" maxlength="256" class="form-control" id="kg25"
 								placeholder="Nombre de kg">
 						</div>
+						
 						<h3>Informations :</h3>
 						
 							<label class="control-label col-sm-2" for="addressR">Adresse
@@ -505,7 +506,7 @@
 									</div>
 								
 								</div>
-
+</div>
 								
 								
 								
@@ -698,19 +699,22 @@
 																// $(".username-value").html(cleanInput(user) + ' <span class="caret">');
 																// showMenu(".main");
 
+																
+																/*
 																if (data.id == 1) {
 																	document.location = '/html/board';
 																} else {
 																	showMenu(".order");
 
-																	for (var i = 0; i < 25 /*25+2*/; i++) {
-																		// alert("i: "+i);
+																	for (var i = 0; i < 25; i++) {
 																		recupPriceBdd(
 																				i,
 																				i);
 																	}
 																}
-
+																*/
+																alert("Compte créé");
+																
 															},
 															error : function(
 																	jqXHR,
@@ -746,6 +750,47 @@
 												var dateL = $(
 														"#order-form #dateL")
 														.val();
+																		
+												// 00/00/00 00:00
+												   0123456789
+												   
+												if( (dateR.charAt(0)!='0' && dateR.charAt(0)!='1' && dateR.charAt(0)!='2' && dateR.charAt(0)!='3' && dateR.charAt(0)!='4' && dateR.charAt(0)!='5' && dateR.charAt(0)!='6' && dateR.charAt(0)!='7' && dateR.charAt(0)!='8' && dateR.charAt(0)!='9') 
+													|| (dateR.charAt(1)!='0' && dateR.charAt(1)!='1' && dateR.charAt(1)!='2' && dateR.charAt(1)!='3' && dateR.charAt(1)!='4' && dateR.charAt(1)!='5' && dateR.charAt(1)!='6' && dateR.charAt(1)!='7' && dateR.charAt(1)!='8' && dateR.charAt(1)!='9')
+													|| (dateR.charAt(3)!='0' && dateR.charAt(3)!='1' && dateR.charAt(3)!='2' && dateR.charAt(3)!='3' && dateR.charAt(3)!='4' && dateR.charAt(3)!='5' && dateR.charAt(3)!='6' && dateR.charAt(3)!='7' && dateR.charAt(3)!='8' && dateR.charAt(3)!='9')
+													|| (dateR.charAt(4)!='0' && dateR.charAt(4)!='1' && dateR.charAt(4)!='2' && dateR.charAt(4)!='3' && dateR.charAt(4)!='4' && dateR.charAt(4)!='5' && dateR.charAt(4)!='6' && dateR.charAt(4)!='7' && dateR.charAt(4)!='8' && dateR.charAt(4)!='9')
+													|| (dateR.charAt(6)!='0' && dateR.charAt(6)!='1' && dateR.charAt(6)!='2' && dateR.charAt(6)!='3' && dateR.charAt(6)!='4' && dateR.charAt(6)!='5' && dateR.charAt(6)!='6' && dateR.charAt(6)!='7' && dateR.charAt(6)!='8' && dateR.charAt(6)!='9')												
+													|| (dateR.charAt(7)!='0' && dateR.charAt(7)!='1' && dateR.charAt(7)!='2' && dateR.charAt(7)!='3' && dateR.charAt(7)!='4' && dateR.charAt(7)!='5' && dateR.charAt(7)!='6' && dateR.charAt(7)!='7' && dateR.charAt(7)!='8' && dateR.charAt(7)!='9')
+													|| (dateR.charAt(9)!='0' && dateR.charAt(9)!='1' && dateR.charAt(9)!='2' && dateR.charAt(9)!='3' && dateR.charAt(9)!='4' && dateR.charAt(9)!='5' && dateR.charAt(9)!='6' && dateR.charAt(9)!='7' && dateR.charAt(9)!='8' && dateR.charAt(9)!='9')
+													|| (dateR.charAt(10)!='0' && dateR.charAt(10)!='1' && dateR.charAt(10)!='2' && dateR.charAt(10)!='3' && dateR.charAt(10)!='4' && dateR.charAt(10)!='5' && dateR.charAt(10)!='6' && dateR.charAt(10)!='7' && dateR.charAt(10)!='8' && dateR.charAt(10)!='9')
+													|| (dateR.charAt(12)!='0' && dateR.charAt(12)!='1' && dateR.charAt(12)!='2' && dateR.charAt(12)!='3' && dateR.charAt(12)!='4' && dateR.charAt(12)!='5' && dateR.charAt(12)!='6' && dateR.charAt(12)!='7' && dateR.charAt(12)!='8' && dateR.charAt(12)!='9')
+													|| (dateR.charAt(13)!='0' && dateR.charAt(13)!='1' && dateR.charAt(13)!='2' && dateR.charAt(13)!='3' && dateR.charAt(13)!='4' && dateR.charAt(13)!='5' && dateR.charAt(13)!='6' && dateR.charAt(13)!='7' && dateR.charAt(13)!='8' && dateR.charAt(13)!='9')
+													|| (dateR.charAt(2)!='/') || (dateR.charAt(5)!='/') || (dateR.charAt(11)!=':')
+												)
+												{
+													alert("Problème format date: jj/mm/aa hh:mm");
+													stopLoad();
+													return;
+												}
+												
+												   if( (dateL.charAt(0)!='0' && dateL.charAt(0)!='1' && dateL.charAt(0)!='2' && dateL.charAt(0)!='3' && dateL.charAt(0)!='4' && dateL.charAt(0)!='5' && dateL.charAt(0)!='6' && dateL.charAt(0)!='7' && dateL.charAt(0)!='8' && dateL.charAt(0)!='9') 
+															|| (dateL.charAt(1)!='0' && dateL.charAt(1)!='1' && dateL.charAt(1)!='2' && dateL.charAt(1)!='3' && dateL.charAt(1)!='4' && dateL.charAt(1)!='5' && dateL.charAt(1)!='6' && dateL.charAt(1)!='7' && dateL.charAt(1)!='8' && dateL.charAt(1)!='9')
+															|| (dateL.charAt(3)!='0' && dateL.charAt(3)!='1' && dateL.charAt(3)!='2' && dateL.charAt(3)!='3' && dateL.charAt(3)!='4' && dateL.charAt(3)!='5' && dateL.charAt(3)!='6' && dateL.charAt(3)!='7' && dateL.charAt(3)!='8' && dateL.charAt(3)!='9')
+															|| (dateL.charAt(4)!='0' && dateL.charAt(4)!='1' && dateL.charAt(4)!='2' && dateL.charAt(4)!='3' && dateL.charAt(4)!='4' && dateL.charAt(4)!='5' && dateL.charAt(4)!='6' && dateL.charAt(4)!='7' && dateL.charAt(4)!='8' && dateL.charAt(4)!='9')
+															|| (dateL.charAt(6)!='0' && dateL.charAt(6)!='1' && dateL.charAt(6)!='2' && dateL.charAt(6)!='3' && dateL.charAt(6)!='4' && dateL.charAt(6)!='5' && dateL.charAt(6)!='6' && dateL.charAt(6)!='7' && dateL.charAt(6)!='8' && dateL.charAt(6)!='9')												
+															|| (dateL.charAt(7)!='0' && dateL.charAt(7)!='1' && dateL.charAt(7)!='2' && dateL.charAt(7)!='3' && dateL.charAt(7)!='4' && dateL.charAt(7)!='5' && dateL.charAt(7)!='6' && dateL.charAt(7)!='7' && dateL.charAt(7)!='8' && dateL.charAt(7)!='9')
+															|| (dateL.charAt(9)!='0' && dateL.charAt(9)!='1' && dateL.charAt(9)!='2' && dateL.charAt(9)!='3' && dateL.charAt(9)!='4' && dateL.charAt(9)!='5' && dateL.charAt(9)!='6' && dateL.charAt(9)!='7' && dateL.charAt(9)!='8' && dateL.charAt(9)!='9')
+															|| (dateL.charAt(10)!='0' && dateL.charAt(10)!='1' && dateL.charAt(10)!='2' && dateL.charAt(10)!='3' && dateL.charAt(10)!='4' && dateL.charAt(10)!='5' && dateL.charAt(10)!='6' && dateL.charAt(10)!='7' && dateL.charAt(10)!='8' && dateL.charAt(10)!='9')
+															|| (dateL.charAt(12)!='0' && dateL.charAt(12)!='1' && dateL.charAt(12)!='2' && dateL.charAt(12)!='3' && dateL.charAt(12)!='4' && dateL.charAt(12)!='5' && dateL.charAt(12)!='6' && dateL.charAt(12)!='7' && dateL.charAt(12)!='8' && dateL.charAt(12)!='9')
+															|| (dateL.charAt(13)!='0' && dateL.charAt(13)!='1' && dateL.charAt(13)!='2' && dateL.charAt(13)!='3' && dateL.charAt(13)!='4' && dateL.charAt(13)!='5' && dateL.charAt(13)!='6' && dateL.charAt(13)!='7' && dateL.charAt(13)!='8' && dateL.charAt(13)!='9')
+															|| (dateL.charAt(2)!='/') || (dateL.charAt(5)!='/') || (dateL.charAt(11)!=':')
+														)
+														{
+															alert("Problème format date: jj/mm/aa hh:mm");
+															stopLoad();
+															return;
+														}
+												
+												
 
 												var error = false;
 
